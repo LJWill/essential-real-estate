@@ -70,6 +70,7 @@ if (!class_exists('ERE_Template_Hooks')) {
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_attachments', 35);
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_map_directions', 40);
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_nearby_places', 45);
+            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_test_section', 50);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_walk_score', 50);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_contact_agent', 55);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_footer', 90);
