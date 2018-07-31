@@ -225,27 +225,27 @@ if (!class_exists('ERE_Admin')) {
             $price_unit=array();
             $enable_price_unit=ere_get_option('enable_price_unit', '1');
             $price_short_col='6';
-            if($enable_price_unit=='1')
-            {
-                $price_short_col='3';
-                $price_unit= array(
-                    'id' => "{$meta_prefix}property_price_unit",
-                    'title' => esc_html__('Price Unit', 'essential-real-estate'),
-                    'type' => 'button_set',
-                    'options' => array(
-                        // '1' => esc_html__('None', 'essential-real-estate'),
-                        // '1000' => esc_html__('Thousand', 'essential-real-estate'),
-                        // '1000000' => esc_html__('Million', 'essential-real-estate'),
-                        // '1000000000' => esc_html__('Billion', 'essential-real-estate'),
-                        '1' => esc_html__('Day', 'essential-real-estate'),
-                        '7' => esc_html__('Week', 'essential-real-estate'),
-                        '28' => esc_html__('Month', 'essential-real-estate'),
-                    ),
-                    'default' => '1',
-                    'col' => '9',
-                    'required' => array("{$meta_prefix}property_price_on_call", '=', '0'),
-                );
-            }
+            // if($enable_price_unit=='1')
+            // {
+            //     $price_short_col='3';
+            //     $price_unit= array(
+            //         'id' => "{$meta_prefix}property_price_unit",
+            //         'title' => esc_html__('Price Unit', 'essential-real-estate'),
+            //         'type' => 'button_set',
+            //         'options' => array(
+            //             '1' => esc_html__('None', 'essential-real-estate'),
+            //             '1000' => esc_html__('Thousand', 'essential-real-estate'),
+            //             '1000000' => esc_html__('Million', 'essential-real-estate'),
+            //             '1000000000' => esc_html__('Billion', 'essential-real-estate'),
+            //             '1' => esc_html__('Day', 'essential-real-estate'),
+            //             '7' => esc_html__('Week', 'essential-real-estate'),
+            //             '28' => esc_html__('Month', 'essential-real-estate'),
+            //         ),
+            //         'default' => '1',
+            //         'col' => '9',
+            //         'required' => array("{$meta_prefix}property_price_on_call", '=', '0'),
+            //     );
+            // }
             $render_additional_fields=ere_render_additional_fields();
             $additional_fields=array();
             if(count($render_additional_fields)>0)
@@ -276,92 +276,31 @@ if (!class_exists('ERE_Admin')) {
                                         array(
                                             'id' => "{$meta_prefix}property_price_short",
                                             'title' => esc_html__('Price', 'essential-real-estate'),
-                                            // 'desc' => esc_html__('Example Value: 50', 'essential-real-estate'),
                                             'type' => 'text',
                                             'pattern' => "{$format_number}",
                                             'default' => '',
-                                            'col' => $price_short_col,
-                                            'required' => array("{$meta_prefix}property_price_on_call", '=', '0'),
+                                            'col' => '3',
+                                            // 'required' => array("{$meta_prefix}property_price_on_call", '=', '0'),
                                         ),
                                         // $price_unit
+                                        array(
+                                            'id' => "{$meta_prefix}property_price_period",
+                                            'title' => esc_html__('Per', 'essential-real-estate'),
+                                            'type' => 'button set',
+                                            'options' => array(
+                                                'day' => esc_html__('Day', 'essential-real-estate'),
+                                                'week' => esc_html__('Week', 'essential-real-estate'),
+                                                'month' => esc_html__('Month', 'essential-real-estate'),
+                                            ),
+                                            'default' => 'month',
+                                            'col' => '9',
+                                        ),
                                     )
                                 ),
-                                // array(
-                                //     'type' => 'row',
-                                //     'col' => '6',
-                                //     'fields' => array(
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_price_prefix",
-                                //             'title' => esc_html__('Before Price Label', 'essential-real-estate'),
-                                //             'desc' => esc_html__('Example Value: Start From', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'default' => '',
-                                //             'required' => array("{$meta_prefix}property_price_on_call", '=', '0'),
-                                //         ),
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_price_postfix",
-                                //             'title' => esc_html__('After Price Label', 'essential-real-estate'),
-                                //             'desc' => esc_html__('Example Value: Per Month', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'default' => '',
-                                //             'required' => array("{$meta_prefix}property_price_on_call", '=', '0'),
-                                //         ),
-                                //     )
-                                // ),
-                                // array(
-                                //     'type' => 'row',
-                                //     'col' => '12',
-                                //     'fields' => array(
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_price_on_call",
-                                //             'title' => esc_html__('Price on Call ?', 'essential-real-estate'),
-                                //             'type' => 'button_set',
-                                //             'options' => array(
-                                //                 '1' => esc_html__('Yes', 'essential-real-estate'),
-                                //                 '0' => esc_html__('No', 'essential-real-estate'),
-                                //             ),
-                                //             'default' => '0',
-                                //         ),
-                                //     )
-                                // ),
-                                // array(
-                                //     'type' => 'divide'
-                                // ),
-                                // array(
-                                //     'type' => 'row',
-                                //     'col' => '6',
-                                //     'fields' => array(
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_size",
-                                //             'title' => sprintf( __( 'Size (%s)', 'essential-real-estate' ), $measurement_units),
-                                //             'desc' => esc_html__('Example Value: 200', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'pattern' => "{$format_number}",
-                                //             'default' => '',
-                                //         ),
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_land",
-                                //             'title' => sprintf( __( 'Land Area (%s)', 'essential-real-estate' ), $measurement_units_land_area),
-                                //             'desc' => esc_html__('Example Value: 2000', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'pattern' => "{$format_number}",
-                                //             'default' => '',
-                                //         ),
-                                //     )
-                                // ),
-
                                 array(
                                     'type' => 'row',
                                     'col' => '6',
                                     'fields' => array(
-                                        // array(
-                                        //     'id' => "{$meta_prefix}property_rooms",
-                                        //     'title' => esc_html__('Rooms', 'essential-real-estate'),
-                                        //     'desc' => esc_html__('Example Value: 6', 'essential-real-estate'),
-                                        //     'type' => 'text',
-                                        //     'pattern' => "{$format_number}",
-                                        //     'default' => '',
-                                        // ),
                                         array(
                                             'id' => "{$meta_prefix}property_bedrooms",
                                             'title' => esc_html__('Bedrooms', 'essential-real-estate'),
@@ -386,106 +325,376 @@ if (!class_exists('ERE_Admin')) {
                                         array(
                                             'id' => "{$meta_prefix}property_livingrooms",
                                             'title' => esc_html__('Living Rooms', 'essential-real-estate'),
-                                            // 'desc' => esc_html__('Example Value: 2', 'essential-real-estate'),
                                             'type' => 'text',
                                             'pattern' => "{$format_number}",
                                             'default' => '',
                                         ),
                                         array(
-                                            'id' => "{$meta_prefix}property_parkingspots",
+                                            'id' => "{$meta_prefix}property_parkings",
                                             'title' => esc_html__('Parking Spots', 'essential-real-estate'),
-                                            // 'desc' => esc_html__('Example Value: 2', 'essential-real-estate'),
                                             'type' => 'text',
                                             'pattern' => "{$format_number}",
                                             'default' => '',
                                         ),
                                         array(
-                                            'id' => "{$meta_prefix}property_outdoorarea",
+                                            'id' => "{$meta_prefix}property_outdoor",
                                             'title' => esc_html__('Outdoor Area', 'essential-real-estate'),
-                                            // 'desc' => esc_html__('Example Value: 2', 'essential-real-estate'),
                                             'type' => 'text',
                                             'pattern' => "{$format_number}",
                                             'default' => '',
                                         ),
                                         array(
-                                            'id' => "{$meta_prefix}property_tenantintotal",
+                                            'id' => "{$meta_prefix}property_tenants",
                                             'title' => esc_html__('Tenant in Total', 'essential-real-estate'),
-                                            // 'desc' => esc_html__('Example Value: 2', 'essential-real-estate'),
                                             'type' => 'text',
                                             'pattern' => "{$format_number}",
                                             'default' => '',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}property_homestay",
+                                            'title' => esc_html__('Is Homestay?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
                                         ),
                                     )
                                 ),
-
-                                // array(
-                                //     'type' => 'row',
-                                //     'col' => '6',
-                                //     'fields' => array(
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_garage",
-                                //             'title' => esc_html__('Garages', 'essential-real-estate'),
-                                //             'desc' => esc_html__('Example Value: 1', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'pattern' => "{$format_number}",
-                                //             'default' => '',
-                                //         ),
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_garage_size",
-                                //             'title' => sprintf( __( 'Garages Size (%s)', 'essential-real-estate' ), $measurement_units),
-                                //             'type' => 'text',
-                                //             'pattern' => "{$format_number}",
-                                //             'default' => '',
-                                //         ),
-                                //     )
-                                // ),
-                                // array(
-                                //     'type' => 'row',
-                                //     'col' => '6',
-                                //     'fields' => array(
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_year",
-                                //             'title' => esc_html__('Year Built', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'default' => '',
-                                //         ),
-                                //         array(
-                                //             'id' => "{$meta_prefix}property_identity",
-                                //             'title' => esc_html__('Property ID', 'essential-real-estate'),
-                                //             'desc' => esc_html__('Property ID will help to search property directly (default=postId).', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'default' => '',
-                                //         ),
-                                //     )
-                                // ),
-                                // array(
-                                //     'type' => 'divide'
-                                // ),
-                                // array(
-                                //     'id' => "{$meta_prefix}additional_features",
-                                //     'type' => 'repeater',
-                                //     'title' => esc_html__('Additional details:', 'essential-real-estate'),
-                                //     'col' => '6',
-                                //     'sort' => true,
-                                //     'fields' => array(
-                                //         array(
-                                //             'id' => "{$meta_prefix}additional_feature_title",
-                                //             'title' => esc_html__('Title:', 'essential-real-estate'),
-                                //             'desc' => esc_html__('Enter additional title', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'default' => '',
-                                //             'col' => '5',
-                                //         ),
-                                //         array(
-                                //             'id' => "{$meta_prefix}additional_feature_value",
-                                //             'title' => esc_html__('Value', 'essential-real-estate'),
-                                //             'desc' => esc_html__('Enter additional value', 'essential-real-estate'),
-                                //             'type' => 'text',
-                                //             'default' => '',
-                                //             'col' => '7',
-                                //         ),
-                                //     )
-                                // ),
+                                array(
+                                    'id' => "{$meta_prefix}bill_included",
+                                    'type' => 'group',
+                                    'title' => esc_html__('Bill included:', 'essential-real-estate'),
+                                    'col' => '12',
+                                    'sort' => true,
+                                    'fields' => array(
+                                        array(
+                                            'type' => 'row',
+                                            'col' => '12',
+                                            'fields' => array(
+                                                array(
+                                                    'id' => "{$meta_prefix}bill_water",
+                                                    'title' => esc_html__('Is water?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}bill_electricity",
+                                                    'title' => esc_html__('Is electricity?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}bill_gas",
+                                                    'title' => esc_html__('Is gas?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}bill_internet",
+                                                    'title' => esc_html__('Is Internet?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                            )
+                                        ),
+                                    )
+                                ),
+                                array(
+                                    'id' => "{$meta_prefix}property_houserule",
+                                    'type' => 'group',
+                                    'title' => esc_html__('House rules:', 'essential-real-estate'),
+                                    'col' => '12',
+                                    'sort' => true,
+                                    'fields' => array(
+                                        array(
+                                            'type' => 'row',
+                                            'col' => '12',
+                                            'fields' => array(
+                                                array(
+                                                    'id' => "{$meta_prefix}houserule_nopets",
+                                                    'title' => esc_html__('Is no pets?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}houserule_nosmoking",
+                                                    'title' => esc_html__('Is no smoking?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}houserule_femaleonly",
+                                                    'title' => esc_html__('Is female only?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}houserule_maleonly",
+                                                    'title' => esc_html__('Is male only?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}houserule_desc",
+                                                    'title' => esc_html__('Additional house rule:', 'essential-real-estate'),
+                                                    'type' => 'textarea',
+                                                    'pattern' => "{$format_number}",
+                                                    'default' => '',
+                                                    'col' => '12',
+                                                ),
+                                            )
+                                        ),
+                                    )
+                                ),
+                                array(
+                                    'id' => "{$meta_prefix}property_service",
+                                    'type' => 'group',
+                                    'title' => esc_html__('Service:', 'essential-real-estate'),
+                                    'col' => '12',
+                                    'sort' => true,
+                                    'fields' => array(
+                                        array(
+                                            'type' => 'row',
+                                            'col' => '12',
+                                            'fields' => array(
+                                                array(
+                                                    'id' => "{$meta_prefix}service_laundry",
+                                                    'title' => esc_html__('Is laundry?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}service_meals",
+                                                    'title' => esc_html__('Is meals?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                                array(
+                                                    'id' => "{$meta_prefix}services_cleaning",
+                                                    'title' => esc_html__('Is cleaning?', 'essential-real-estate'),
+                                                    'type' => 'button_set',
+                                                    'options' => array(
+                                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                                    ),
+                                                    'default' => '0',
+                                                    'col' => '6',
+                                                ),
+                                            )
+                                        ),
+                                    )
+                                ),
+                                array(
+                                    'id' => "{$meta_prefix}bedroom_details",
+                                    'type' => 'repeater',
+                                    'title' => esc_html__('Bedroom details:', 'essential-real-estate'),
+                                    'col' => '12',
+                                    'sort' => true,
+                                    'fields' => array(
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_singlebed",
+                                            'title' => esc_html__('Bedroom single bed', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_doublebed",
+                                            'title' => esc_html__('Bedroom double bed', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_queenbed",
+                                            'title' => esc_html__('Bedroom queen bed', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_kingbed",
+                                            'title' => esc_html__('Bedroom king bed', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_kingsinglebed",
+                                            'title' => esc_html__('Bedroom king single bed', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_window",
+                                            'title' => esc_html__('Is window?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_wardrobe",
+                                            'title' => esc_html__('Is wardrobe?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_besidetable",
+                                            'title' => esc_html__('Is besidetable?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_balcony",
+                                            'title' => esc_html__('Is balcony?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_mattress",
+                                            'title' => esc_html__('Is mattress?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_bookshelf",
+                                            'title' => esc_html__('Is bookshelf?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_bedlined",
+                                            'title' => esc_html__('Is bedlined?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_desk",
+                                            'title' => esc_html__('Is desk?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_lamp",
+                                            'title' => esc_html__('Is lamp?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}bedroom_tvunit",
+                                            'title' => esc_html__('Is tv?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                            'col' => '12',
+                                        ),
+                                    )
+                                ),
                                 // array(
                                 //     'type' => 'divide'
                                 // ),
@@ -502,7 +711,81 @@ if (!class_exists('ERE_Admin')) {
                             )
                         )
                     ),
-                    $additional_fields,
+                    array(
+                        array(
+                            'id' => "{$meta_prefix}nearby_tab",
+                            'title' => esc_html__('Nearby facilities', 'essential-real-estate'),
+                            'icon' => 'dashicons-admin-home',
+                            'fields' => array(
+                                array(
+                                    'type' => 'row',
+                                    'col' => '12',
+                                    'fields' => array(
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_campus",
+                                            'title' => esc_html__('Campus', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_restaurant",
+                                            'title' => esc_html__('Restaurant', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_busstop",
+                                            'title' => esc_html__('Bus stop', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_tramstop",
+                                            'title' => esc_html__('Tram stop', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_trainstation",
+                                            'title' => esc_html__('Train station', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_gym",
+                                            'title' => esc_html__('Gym', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_library",
+                                            'title' => esc_html__('Library', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_sports",
+                                            'title' => esc_html__('Sports', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_swimmingpool",
+                                            'title' => esc_html__('Swimming pool', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_tenniscourt",
+                                            'title' => esc_html__('Tennis court', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_park",
+                                            'title' => esc_html__('Park', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}nearby_other",
+                                            'title' => esc_html__('Other', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                    )
+                                ),
+                            )
+                        ),
+                    ),
                     array(
                         array(
                             'id' => "{$meta_prefix}location_tab",
@@ -513,25 +796,19 @@ if (!class_exists('ERE_Admin')) {
                                     'type' => 'row',
                                     'col' => '6',
                                     'fields' => array(
-                                        // array(
-                                        //     'id' => "{$meta_prefix}property_address",
-                                        //     'title' => esc_html__('Property Address', 'essential-real-estate'),
-                                        //     'desc' => esc_html__('Full Address', 'essential-real-estate'),
-                                        //     'type' => 'text',
-                                        // ),
-                                        // array(
-                                        //     'id' => "{$meta_prefix}property_zip",
-                                        //     'title' => esc_html__('Zip', 'essential-real-estate'),
-                                        //     'type' => 'text',
-                                        // ),
                                         array(
                                             'id' => "{$meta_prefix}property_unitno",
                                             'title' => esc_html__('Unit Number', 'essential-real-estate'),
                                             'type' => 'text',
                                         ),
                                         array(
-                                            'id' => "{$meta_prefix}property_streetaddr",
+                                            'id' => "{$meta_prefix}property_staddr",
                                             'title' => esc_html__('Street Address', 'essential-real-estate'),
+                                            'type' => 'text',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}property_postcode",
+                                            'title' => esc_html__('Post Code', 'essential-real-estate'),
                                             'type' => 'text',
                                         ),
                                     )
@@ -736,72 +1013,125 @@ if (!class_exists('ERE_Admin')) {
                             'title' => esc_html__('Agent', 'essential-real-estate'),
                             'icon' => 'dashicons-admin-users',
                             'fields' => array(
+
+                                // array(
+                                //     'id' => "{$meta_prefix}agent_display_option",
+                                //     'title' => __('What to display in contact information box ?', 'essential-real-estate'),
+                                //     'type' => 'radio',
+                                //     'options' => array(
+                                //         'author_info' => __('Author information.', 'essential-real-estate'),
+                                //         'agent_info' => __('Agent Information. (Select the agent below)', 'essential-real-estate'),
+                                //         'other_info' => __('Other contact', 'essential-real-estate'),
+                                //         'no' => __('Hide contact information', 'essential-real-estate'),
+                                //     ),
+                                //     'default' => 'agent_info',
+                                // ),
+                                // array(
+                                //     'id' => "{$meta_prefix}property_agent",
+                                //     'title' => esc_html__('Agent:', 'essential-real-estate'),
+                                //     'type' => 'selectize',
+                                //     'multiple' => false,
+                                //     'data' => 'agent',
+                                //     'data_args' => array(
+                                //         'numberposts' => -1,
+                                //     ),
+                                //     'required' => array("{$meta_prefix}agent_display_option", '=', 'agent_info')
+                                // ),
+                                // array(
+                                //     'id' => "{$meta_prefix}property_other_contact_name",
+                                //     'title' => esc_html__('Other contact Name', 'essential-real-estate'),
+                                //     'type' => 'text',
+                                //     'default' => '',
+                                //     'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
+                                // ),
+                                // array(
+                                //     'id' => "{$meta_prefix}property_other_contact_mail",
+                                //     'title' => esc_html__('Other contact Email', 'essential-real-estate'),
+                                //     'type' => 'text',
+                                //     'default' => '',
+                                //     'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
+                                // ),
+                                // array(
+                                //     'id' => "{$meta_prefix}property_other_contact_phone",
+                                //     'title' => esc_html__('Other contact Phone', 'essential-real-estate'),
+                                //     'type' => 'text',
+                                //     'default' => '',
+                                //     'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
+                                // ),
+                                // array(
+                                //     'id' => "{$meta_prefix}property_other_contact_description",
+                                //     'title' => esc_html__('Other contact more info', 'essential-real-estate'),
+                                //     'type' => 'textarea',
+                                //     'default' => '',
+                                //     'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
+                                // ),
                                 array(
-                                    'id' => "{$meta_prefix}agent_display_option",
-                                    'title' => __('What to display in contact information box ?', 'essential-real-estate'),
-                                    'type' => 'radio',
+                                    'id' => "{$meta_prefix}you_livein",
+                                    'title' => esc_html__('You live in?', 'essential-real-estate'),
+                                    'type' => 'button_set',
                                     'options' => array(
-                                        'author_info' => __('Author information.', 'essential-real-estate'),
-                                        'agent_info' => __('Agent Information. (Select the agent below)', 'essential-real-estate'),
-                                        'other_info' => __('Other contact', 'essential-real-estate'),
-                                        'no' => __('Hide contact information', 'essential-real-estate'),
+                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                        '0' => esc_html__('No', 'essential-real-estate'),
                                     ),
-                                    'default' => 'agent_info',
+                                    'default' => '0',
+                                    'col' => '12',
                                 ),
                                 array(
-                                    'id' => "{$meta_prefix}property_agent",
-                                    'title' => esc_html__('Agent:', 'essential-real-estate'),
-                                    'type' => 'selectize',
-                                    'multiple' => false,
-                                    'data' => 'agent',
-                                    'data_args' => array(
-                                        'numberposts' => -1,
+                                    'id' => "{$meta_prefix}you_gender",
+                                    'title' => esc_html__('Gender', 'essential-real-estate'),
+                                    'type' => 'button_set',
+                                    'options' => array(
+                                        'male' => esc_html__('Male', 'essential-real-estate'),
+                                        'female' => esc_html__('Female', 'essential-real-estate'),
+                                        'not_specified' => esc_html__('Not Specified', 'essential-real-estate'),
                                     ),
-                                    'required' => array("{$meta_prefix}agent_display_option", '=', 'agent_info')
+                                    'default' => '0',
+                                    'col' => '12',
                                 ),
                                 array(
-                                    'id' => "{$meta_prefix}property_other_contact_name",
-                                    'title' => esc_html__('Other contact Name', 'essential-real-estate'),
+                                    'id' => "{$meta_prefix}you_age",
+                                    'title' => esc_html__('Your age', 'essential-real-estate'),
                                     'type' => 'text',
+                                    'pattern' => "{$format_number}",
                                     'default' => '',
-                                    'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
                                 ),
                                 array(
-                                    'id' => "{$meta_prefix}property_other_contact_mail",
-                                    'title' => esc_html__('Other contact Email', 'essential-real-estate'),
-                                    'type' => 'text',
-                                    'default' => '',
-                                    'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
+                                    'id' => "{$meta_prefix}you_family",
+                                    'title' => esc_html__('You live with family?', 'essential-real-estate'),
+                                    'type' => 'button_set',
+                                    'options' => array(
+                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                    ),
+                                    'default' => '0',
+                                    'col' => '12',
                                 ),
                                 array(
-                                    'id' => "{$meta_prefix}property_other_contact_phone",
-                                    'title' => esc_html__('Other contact Phone', 'essential-real-estate'),
-                                    'type' => 'text',
-                                    'default' => '',
-                                    'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
-                                ),
-                                array(
-                                    'id' => "{$meta_prefix}property_other_contact_description",
-                                    'title' => esc_html__('Other contact more info', 'essential-real-estate'),
-                                    'type' => 'textarea',
-                                    'default' => '',
-                                    'required' => array("{$meta_prefix}agent_display_option", '=', 'other_info')
+                                    'id' => "{$meta_prefix}you_pets",
+                                    'title' => esc_html__('Is pets?', 'essential-real-estate'),
+                                    'type' => 'button_set',
+                                    'options' => array(
+                                        '1' => esc_html__('Yes', 'essential-real-estate'),
+                                        '0' => esc_html__('No', 'essential-real-estate'),
+                                    ),
+                                    'default' => '0',
+                                    'col' => '12',
                                 ),
                             )
                         ),
-                        array(
-                            'id' => "{$meta_prefix}private_note_tab",
-                            'title' => esc_html__('Private Note', 'essential-real-estate'),
-                            'icon' => 'dashicons-testimonial',
-                            'fields' => array(
-                                array(
-                                    'id' => "{$meta_prefix}private_note",
-                                    'title' => esc_html__('Private Note', 'essential-real-estate'),
-                                    'desc' => esc_html__('Create a private note for this property, it will not be displayed to public', 'essential-real-estate'),
-                                    'type' => 'textarea',
-                                ),
-                            )
-                        )
+                        // array(
+                        //     'id' => "{$meta_prefix}private_note_tab",
+                        //     'title' => esc_html__('Private Note', 'essential-real-estate'),
+                        //     'icon' => 'dashicons-testimonial',
+                        //     'fields' => array(
+                        //         array(
+                        //             'id' => "{$meta_prefix}private_note",
+                        //             'title' => esc_html__('Private Note', 'essential-real-estate'),
+                        //             'desc' => esc_html__('Create a private note for this property, it will not be displayed to public', 'essential-real-estate'),
+                        //             'type' => 'textarea',
+                        //         ),
+                        //     )
+                        // )
                     )
                 )
             );
@@ -1188,22 +1518,22 @@ if (!class_exists('ERE_Admin')) {
             //         'slug' => apply_filters('ere_property_label_slug', 'property-label'),
             //     ),
             // );
-            // $taxonomies['property-state'] = array(
-            //     'post_type' => 'property',
-            //     'hierarchical'      => false,
-            //     'meta_box_cb'       => array($this,'taxonomy_select_meta_box'),
-            //     'label' => esc_html__('Province / State', 'essential-real-estate'),
-            //     'singular_name' => esc_html__('Province / State', 'essential-real-estate'),
-            //     'rewrite' => array(
-            //         'slug' => apply_filters('ere_property_state_slug', 'property-state'),
-            //     ),
-            // );
+            $taxonomies['property-state'] = array(
+                'post_type' => 'property',
+                'hierarchical'      => false,
+                'meta_box_cb'       => array($this,'taxonomy_select_meta_box'),
+                'label' => esc_html__('Province / State', 'essential-real-estate'),
+                'singular_name' => esc_html__('Province / State', 'essential-real-estate'),
+                'rewrite' => array(
+                    'slug' => apply_filters('ere_property_state_slug', 'property-state'),
+                ),
+            );
             $taxonomies['property-city'] = array(
                 'post_type' => 'property',
                 'hierarchical'      => false,
                 'meta_box_cb'       => array($this,'taxonomy_select_meta_box'),
-                'label' => esc_html__('City / Town', 'essential-real-estate'),
-                'singular_name' => esc_html__('City / Town', 'essential-real-estate'),
+                'label' => esc_html__('Suburb', 'essential-real-estate'),
+                'singular_name' => esc_html__('Suburb', 'essential-real-estate'),
                 'rewrite' => array(
                     'slug' => apply_filters('ere_property_city_slug', 'property-city'),
                 ),
