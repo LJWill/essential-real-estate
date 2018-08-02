@@ -58,10 +58,10 @@ wp_print_styles(ERE_PLUGIN_PREFIX . 'submit-property');
 ?>
 <section class="ere-property-multi-step">
     <?php
-    $layout = ere_get_option('property_form_sections', array('title_des', 'location', 'type', 'price', 'features', 'details', 'media', 'floors', 'contact'));
-    if (!in_array("private_note", $hide_property_fields)){
-        $layout['private_note']='private_note';
-    }
+    $layout = ere_get_option('property_form_sections', array('about_your_property', 'about_lease', 'title_des', 'location', 'type', 'price', 'features', 'details', 'media', 'floors', 'contact'));
+    // if (!in_array("private_note", $hide_property_fields)){
+    //     $layout['private_note']='private_note';
+    // }
     unset($layout['sort_order']);
     $keys= array_keys($layout);
     $total=count($keys);
@@ -72,6 +72,12 @@ wp_print_styles(ERE_PLUGIN_PREFIX . 'submit-property');
         foreach ($layout as $value):
             $i++;
             switch ($value) {
+                case 'about_your_property':
+                    $step_name=esc_html__('About Your Property', 'essential-real-estate');
+                    break;
+                case 'about_lease':
+                    $step_name=esc_html__('About Lease', 'essential-real-estate');
+                    break;
                 case 'title_des':
                     $step_name=esc_html__('Title & Description', 'essential-real-estate');
                     break;

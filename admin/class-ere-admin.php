@@ -2762,6 +2762,8 @@ if (!class_exists('ERE_Admin')) {
                                     'title' => esc_html__('Submission Form Layout Manager', 'essential-real-estate'),
                                     'desc' => esc_html__('Drag and drop layout manager, to quickly organize your property submission form layout.', 'essential-real-estate'),
                                     'options' => array(
+                                        'about_your_property' => esc_html__('About Your Property', 'essential-real-estate'),
+                                        'about_lease' => esc_html__('About Lease', 'essential-real-estate'),
                                         'title_des' => esc_html__('Title & Description', 'essential-real-estate'),
                                         'location' => esc_html__('Property Location', 'essential-real-estate'),
                                         'type' => esc_html__('Property Type', 'essential-real-estate'),
