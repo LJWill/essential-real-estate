@@ -1740,8 +1740,6 @@
     padding: 15px!important;
     height: 70px!important;
     align-items: center!important;
-    align-content: center!important;
-    align-self: center!important;
     background-color: #fff!important;
     border: 1px solid #ddd!important;
 }
@@ -1808,6 +1806,7 @@
 }
 .user-dropdown .user-dropdown-menu i {
     width: 20px;
+    margin-right: 10px;
 }
 .user-dropdown .user-dropdown-menu a {
     display: block;

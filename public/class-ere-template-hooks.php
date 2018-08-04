@@ -65,11 +65,12 @@ if (!class_exists('ERE_Template_Hooks')) {
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_gallery', 10);
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_description', 15);
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_location', 20);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_features', 25);
+            // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_features', 25);
+            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_googlemap', 30);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_floors', 30);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_attachments', 35);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_map_directions', 40);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_nearby_places', 45);
+            // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_map_directions', 40);
+            // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_nearby_places', 45);
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_test', 50);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_walk_score', 50);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_contact_agent', 55);
@@ -469,6 +470,14 @@ if (!class_exists('ERE_Template_Hooks')) {
         public function single_property_gallery()
         {
             ere_get_template('single-property/gallery.php');
+        }
+
+        /**
+         * single_property_googlemap
+         */
+        public function single_property_googlemap()
+        {
+            ere_get_template('single-property/my-google-map.php');
         }
 
         /**

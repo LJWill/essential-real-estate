@@ -18,10 +18,10 @@ $property_gallery = explode( '|', $property_gallery ); ?>
 </style>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       One of three columns
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-7">
 		<div class="property-gallery-wrap mg-bottom-60 sm-mg-bottom-40">
 			<div class="single-property-image-main owl-carousel manual ere-carousel-manual">
 					<?php
