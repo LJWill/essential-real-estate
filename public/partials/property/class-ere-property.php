@@ -350,6 +350,24 @@ if (!class_exists('ERE_Property')) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_desc', $_POST['houserule_desc']);
                 }
 
+                if (isset($_POST['service_laundry'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'service_laundry', sanitize_text_field($_POST['service_laundry']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'service_laundry', '0');
+                }
+
+                if (isset($_POST['service_meals'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'service_meals', sanitize_text_field($_POST['service_meals']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'service_meals', '0');
+                }
+
+                if (isset($_POST['service_cleaning'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'service_cleaning', sanitize_text_field($_POST['service_cleaning']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'service_cleaning', '0');
+                }
+
                 if (isset($_POST['property_video_url'])) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_video_url', sanitize_text_field($_POST['property_video_url']));
                 }
