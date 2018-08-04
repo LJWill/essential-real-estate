@@ -266,8 +266,11 @@ if (!class_exists('Essential_Real_Estate')) {
             $this->loader->add_filter('template_include', $plugin_public, 'template_loader');
             $this->loader->add_action('pre_get_posts', $plugin_public, 'set_posts_per_page');
             $profile = new ERE_Profile();
-            $this->loader->add_filter('user_contactmethods', $profile, 'user_info', 10, 1);
+            $this->loader->add_filter('show_user_profile', $profile, 'custom_user_profile_fields');
+            $this->loader->add_filter('edit_user_profile', $profile, 'custom_user_profile_fields');
             $this->loader->add_action('profile_update', $profile, 'profile_update');
+            $this->loader->add_action('edit_user_profile_update', $profile, 'update_custom_user_profile_fields');
+            $this->loader->add_action('personal_options_update', $profile, 'update_custom_user_profile_fields');
 
             $this->loader->add_action('wp_ajax_ere_profile_image_upload_ajax', $profile, 'profile_image_upload_ajax');
 

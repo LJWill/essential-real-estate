@@ -235,10 +235,12 @@ if (!function_exists('ere_get_format_money')) {
                 }
                 if($unit_text!='')
                 {
-                    $formatted_price=$formatted_price.' '.$unit_text .' ';
                     $enable_rtl_mode = ere_get_option('enable_rtl_mode', 0);
                     if (is_rtl() || ($enable_rtl_mode==1) || isset($_GET['RTL'])) {
                         $formatted_price=' '.$unit_text. ' '. $formatted_price;
+                    }
+                    else{
+                        $formatted_price=$formatted_price.' '.$unit_text .' ';
                     }
                 }
                 else
@@ -691,7 +693,7 @@ if (!function_exists('ere_send_email')) {
     {
         global $ere_background_emailer;
         $ere_background_emailer->push_to_queue( array( 'email' => $email, 'email_type' =>$email_type, 'args'=>$args) );
-        $ere_background_emailer->save()->dispatch();
+        //$ere_background_emailer->data(array(array( 'email' => $email, 'email_type' =>$email_type, 'args'=>$args)) )->save()->dispatch();
     }
 }
 /**

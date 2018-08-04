@@ -7,10 +7,10 @@ if (!class_exists('GSF_Field_Map')) {
 	{
 		public function enqueue()
 		{
-			$api_key = isset($this->params['api_key']) ? $this->params['api_key'] : 'AIzaSyAwey_47Cen4qJOjwHQ_sK1igwKPd74J18';
+			$api_key = isset($this->params['api_key']) ? $this->params['api_key'] : 'AIzaSyBqmFdSPp4-iY_BG14j_eUeLwOn9Oj4a4Q';
 			$google_map_url = apply_filters('gsf_google_map_api_url', 'https://maps.googleapis.com/maps/api/js?key=' . $api_key);
 
-			wp_enqueue_script('google_map', esc_url_raw($google_map_url), array(), '', true);
+			wp_enqueue_script('google-map', esc_url_raw($google_map_url), array(), '', true);
 			wp_enqueue_script(GSF_PLUGIN_RESOURCE_PREFIX . 'map', GSF_PLUGIN_URL . 'fields/map/assets/map.js', array(), GSF_VER, true);
 			wp_enqueue_style(GSF_PLUGIN_RESOURCE_PREFIX . 'map', GSF_PLUGIN_URL . 'fields/map/assets/map.css', array(), GSF_VER);
 		}

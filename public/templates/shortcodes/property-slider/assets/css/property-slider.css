@@ -120,22 +120,10 @@
 	color: #fff;
 	font-weight: 400;
 	background-color: #fb6a19;
-	padding-left: 20px;
+	padding-left: 15px;
 	padding-right: 15px;
 	position: relative;
 	top: -3px;
-}
-.ere-property-slider.navigation-middle .property-inner .property-main-info .property-status span:before {
-	position: absolute;
-	content: '';
-	display: block;
-	right: 100%;
-	top: 0;
-	border-top: 13px solid transparent;
-	border-bottom: 14px solid transparent;
-	border-right: 10px solid;
-	border-right-color: #fb6a19;
-	border-left-color: #fb6a19;
 }
 .ere-property-slider.navigation-middle .property-inner .property-info {
 	background-color: rgba(255, 255, 255, 0.9);
@@ -236,22 +224,10 @@
 	color: #fff;
 	font-weight: 400;
 	background-color: #fb6a19;
-	padding-left: 20px;
+	padding-left: 15px;
 	padding-right: 15px;
 	position: relative;
 	top: -3px;
-}
-.ere-property-slider.pagination-image .property-inner .property-main-info .property-status span:before {
-	position: absolute;
-	content: '';
-	display: block;
-	right: 100%;
-	top: 0;
-	border-top: 13px solid transparent;
-	border-bottom: 14px solid transparent;
-	border-right: 10px solid;
-	border-right-color: #fb6a19;
-	border-left-color: #fb6a19;
 }
 .ere-property-slider.pagination-image .property-inner .property-info {
 	width: 100%;

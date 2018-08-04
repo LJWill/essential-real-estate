@@ -20,6 +20,7 @@ if (!class_exists('ERE_Public')) {
         {
             require_once ERE_PLUGIN_DIR . 'public/class-ere-template-hooks.php';
         }
+
         /**
          * Register the stylesheets for the public-facing side of the site.
          */
@@ -35,7 +36,7 @@ if (!class_exists('ERE_Public')) {
             wp_enqueue_style('bootstrap', $url_bootstrap, array());
 
             wp_enqueue_style('owl.carousel', ERE_PLUGIN_URL . 'public/assets/packages/owl-carousel/assets/owl.carousel.min.css', array(), '2.1.0', 'all');
-            wp_register_style('lightgallery-all', ERE_PLUGIN_URL . 'public/assets/packages/light-gallery/css/lightgallery.min.css',array(), '1.2.18', 'all');
+            wp_register_style('lightgallery-all', ERE_PLUGIN_URL . 'public/assets/packages/light-gallery/css/lightgallery.min.css', array(), '1.2.18', 'all');
             wp_enqueue_style(ERE_PLUGIN_PREFIX . 'main', ERE_PLUGIN_URL . 'public/assets/css/main' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
             $url_font_awesome = ERE_PLUGIN_URL . 'public/assets/packages/fonts-awesome/css/font-awesome.min.css';
             $cdn_font_awesome = ere_get_option('cdn_font_awesome', '');
@@ -44,34 +45,34 @@ if (!class_exists('ERE_Public')) {
             }
             wp_enqueue_style('font-awesome', $url_font_awesome, array());
             // shortcode
-            wp_register_style( ERE_PLUGIN_PREFIX . 'agency', ERE_PLUGIN_URL . 'public/templates/shortcodes/agency/assets/css/agency' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'agent', ERE_PLUGIN_URL . 'public/templates/shortcodes/agent/assets/css/agent' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style( ERE_PLUGIN_PREFIX . 'property', ERE_PLUGIN_URL . 'public/templates/shortcodes/property/assets/css/property' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style( ERE_PLUGIN_PREFIX . 'property-carousel', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-carousel/assets/css/property-carousel' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style( ERE_PLUGIN_PREFIX. 'property-featured', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-featured/assets/css/property-featured' . $min_suffix . '.css', array( 'owl.carousel' ),ERE_PLUGIN_VER, 'all' );
-            wp_register_style(ERE_PLUGIN_PREFIX . 'property-gallery', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-gallery/assets/css/property-gallery' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'google-map-property', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-map/assets/css/property-map' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'property-advanced-search', ERE_PLUGIN_URL.'public/templates/shortcodes/property-advanced-search/assets/css/property-advanced-search' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'property-search', ERE_PLUGIN_URL.'public/templates/shortcodes/property-search/assets/css/property-search' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'property-search-map', ERE_PLUGIN_URL.'public/templates/shortcodes/property-search-map/assets/css/property-search-map' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'property-mini-search', ERE_PLUGIN_URL.'public/templates/shortcodes/property-mini-search/assets/css/property-mini-search' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style( ERE_PLUGIN_PREFIX . 'property-slider', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-slider/assets/css/property-slider' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style( ERE_PLUGIN_PREFIX. 'property-type', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-type/assets/css/property-type' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'agency', ERE_PLUGIN_URL . 'public/templates/shortcodes/agency/assets/css/agency' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'agent', ERE_PLUGIN_URL . 'public/templates/shortcodes/agent/assets/css/agent' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property', ERE_PLUGIN_URL . 'public/templates/shortcodes/property/assets/css/property' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-carousel', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-carousel/assets/css/property-carousel' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-featured', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-featured/assets/css/property-featured' . $min_suffix . '.css', array('owl.carousel'), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-gallery', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-gallery/assets/css/property-gallery' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'google-map-property', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-map/assets/css/property-map' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-advanced-search', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-advanced-search/assets/css/property-advanced-search' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-search', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-search/assets/css/property-search' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-search-map', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-search-map/assets/css/property-search-map' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-mini-search', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-mini-search/assets/css/property-mini-search' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-slider', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-slider/assets/css/property-slider' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'property-type', ERE_PLUGIN_URL . 'public/templates/shortcodes/property-type/assets/css/property-type' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
 
             // Widget
-            wp_register_style(ERE_PLUGIN_PREFIX . 'listing-property-taxonomy-widget', ERE_PLUGIN_URL . 'public/templates/widgets/listing-property-taxonomy/assets/css/listing-property-taxonomy' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'mortgage-calculator', ERE_PLUGIN_URL . 'public/templates/widgets/mortgage-calculator/assets/css/mortgage-calculator' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'search-form-widget', ERE_PLUGIN_URL . 'public/templates/widgets/search-form/assets/css/search-form' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'listing-property-taxonomy-widget', ERE_PLUGIN_URL . 'public/templates/widgets/listing-property-taxonomy/assets/css/listing-property-taxonomy' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'mortgage-calculator', ERE_PLUGIN_URL . 'public/templates/widgets/mortgage-calculator/assets/css/mortgage-calculator' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'search-form-widget', ERE_PLUGIN_URL . 'public/templates/widgets/search-form/assets/css/search-form' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
             wp_register_style(ERE_PLUGIN_PREFIX . 'top-agents', ERE_PLUGIN_URL . 'public/templates/widgets/top-agents/assets/css/top-agents' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
 
             // Archive, Single
-            wp_register_style(ERE_PLUGIN_PREFIX . 'archive-agent', ERE_PLUGIN_URL . 'public/assets/css/archive-agent' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'archive-property', ERE_PLUGIN_URL . 'public/assets/css/archive-property' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'single-agent', ERE_PLUGIN_URL . 'public/assets/css/single-agent' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'single-invoice', ERE_PLUGIN_URL . 'public/assets/css/single-invoice' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'single-property', ERE_PLUGIN_URL . 'public/assets/css/single-property' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'dashboard', ERE_PLUGIN_URL . 'public/assets/css/dashboard' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
-            wp_register_style(ERE_PLUGIN_PREFIX . 'submit-property', ERE_PLUGIN_URL . 'public/assets/css/submit-property' . $min_suffix . '.css',array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'archive-agent', ERE_PLUGIN_URL . 'public/assets/css/archive-agent' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'archive-property', ERE_PLUGIN_URL . 'public/assets/css/archive-property' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'single-agent', ERE_PLUGIN_URL . 'public/assets/css/single-agent' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'single-invoice', ERE_PLUGIN_URL . 'public/assets/css/single-invoice' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'single-property', ERE_PLUGIN_URL . 'public/assets/css/single-property' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'dashboard', ERE_PLUGIN_URL . 'public/assets/css/dashboard' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
+            wp_register_style(ERE_PLUGIN_PREFIX . 'submit-property', ERE_PLUGIN_URL . 'public/assets/css/submit-property' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
         }
 
         /**
@@ -81,15 +82,9 @@ if (!class_exists('ERE_Public')) {
         {
             $min_suffix = ere_get_option('enable_min_css', 0) == 1 ? '.min' : '';
             $enable_rtl_mode = ere_get_option('enable_rtl_mode', 0);
-            if (is_rtl() || ($enable_rtl_mode==1) || isset($_GET['RTL'])) {
+            if (is_rtl() || ($enable_rtl_mode == 1) || isset($_GET['RTL'])) {
                 wp_enqueue_style(ERE_PLUGIN_PREFIX . 'rtl', ERE_PLUGIN_URL . 'public/assets/css/rtl' . $min_suffix . '.css', array(), ERE_PLUGIN_VER, 'all');
-                wp_enqueue_style('bootstrap-multiselect', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css', array());
-
-                // wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array());
-                // wp_enqueue_style('bootstrap-core-css', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css', array());
-                // wp_enqueue_style('material-design-bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css', array());
             }
-            
         }
 
         /**
@@ -106,39 +101,33 @@ if (!class_exists('ERE_Public')) {
             }
             wp_enqueue_script('bootstrap', $url_bootstrap, array('jquery'));
 
-            wp_enqueue_script('bootstrap-multiselect', 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js', array('jquery'));
 
-            // wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', array(''));
-            // wp_enqueue_script('bootstrap-tooltips', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js', array(''));
-            // wp_enqueue_script('boostrap-core-js', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js', array(''));
-            // wp_enqueue_script('mdb-core-js', 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js', array(''));
-            
             wp_register_script('lightgallery-all', ERE_PLUGIN_URL . 'public/assets/packages/light-gallery/js/lightgallery-all.min.js', array('jquery'), '1.2.18', true);
             wp_register_script('moment', ERE_PLUGIN_URL . 'public/assets/packages/bootstrap/js/moment.min.js', array('jquery'), '2.11.1', true);
-            wp_register_script('bootstrap-datetimepicker', ERE_PLUGIN_URL . 'public/assets/packages/bootstrap/js/bootstrap-datetimepicker.min.js', array('jquery','moment'), '4.17.42', true);
+            wp_register_script('bootstrap-datetimepicker', ERE_PLUGIN_URL . 'public/assets/packages/bootstrap/js/bootstrap-datetimepicker.min.js', array('jquery', 'moment'), '4.17.42', true);
             wp_register_script('bootstrap-tabcollapse', ERE_PLUGIN_URL . 'public/assets/packages/bootstrap/js/bootstrap-tabcollapse.min.js', array('jquery'), '1.0', true);
             wp_enqueue_script('jquery-validate', ERE_PLUGIN_URL . 'public/assets/js/jquery.validate.min.js', array('jquery'), '1.17.0', true);
             wp_register_script('jquery-geocomplete', ERE_PLUGIN_URL . 'public/assets/js/jquery.geocomplete.min.js', array('jquery'), '1.7.0', true);
             wp_enqueue_script('imagesloaded', ERE_PLUGIN_URL . 'public/assets/js/imagesloaded.pkgd.min.js', array('jquery'), '4.1.3', true);
-            $googlemap_ssl = ere_get_option('googlemap_ssl',0);
-            $googlemap_api_key = ere_get_option('googlemap_api_key','AIzaSyAwey_47Cen4qJOjwHQ_sK1igwKPd74J18');
-            $googlemap_pin_cluster = ere_get_option('googlemap_pin_cluster',1);
-            if( esc_html( $googlemap_ssl ) == 1 || is_ssl() ) {
-                wp_register_script('google-map', 'https://maps-api-ssl.google.com/maps/api/js?libraries=places&language=' . get_locale() . '&key=' . esc_html($googlemap_api_key), array('jquery'),ERE_PLUGIN_VER,true);
+            $googlemap_ssl = ere_get_option('googlemap_ssl', 0);
+            $googlemap_api_key = ere_get_option('googlemap_api_key', 'AIzaSyBqmFdSPp4-iY_BG14j_eUeLwOn9Oj4a4Q');
+            $googlemap_pin_cluster = ere_get_option('googlemap_pin_cluster', 1);
+            if (esc_html($googlemap_ssl) == 1 || is_ssl()) {
+                wp_register_script('google-map', 'https://maps-api-ssl.google.com/maps/api/js?libraries=places&language=' . get_locale() . '&key=' . esc_html($googlemap_api_key), array('jquery'), ERE_PLUGIN_VER, true);
             } else {
-                wp_register_script('google-map', 'http://maps.googleapis.com/maps/api/js?libraries=places&language=' . get_locale() . '&key=' . esc_html($googlemap_api_key), array('jquery'),ERE_PLUGIN_VER,true);
+                wp_register_script('google-map', 'http://maps.googleapis.com/maps/api/js?libraries=places&language=' . get_locale() . '&key=' . esc_html($googlemap_api_key), array('jquery'), ERE_PLUGIN_VER, true);
             }
             if ($googlemap_pin_cluster != 0) {
-                wp_register_script('markerclusterer', ERE_PLUGIN_URL . 'public/assets/js/markerclusterer.min.js', array('jquery','google-map'), '2.1.1', true);
+                wp_register_script('markerclusterer', ERE_PLUGIN_URL . 'public/assets/js/markerclusterer.min.js', array('jquery', 'google-map'), '2.1.1', true);
             }
-            wp_enqueue_script('infobox', ERE_PLUGIN_URL . 'public/assets/js/infobox.min.js', array('jquery','google-map'), '1.1.13', true);
+            wp_enqueue_script('infobox', ERE_PLUGIN_URL . 'public/assets/js/infobox.min.js', array('jquery', 'google-map'), '1.1.13', true);
             wp_enqueue_script('jquery-core');
             wp_enqueue_script('owl.carousel', ERE_PLUGIN_URL . 'public/assets/packages/owl-carousel/owl.carousel.min.js', array('jquery'), '2.1.0', true);
 
             $dec_point = ere_get_option('decimal_separator', '.');
             $thousands_sep = ere_get_option('thousand_separator', ',');
 
-            wp_enqueue_script(ERE_PLUGIN_PREFIX . 'main', ERE_PLUGIN_URL . 'public/assets/js/ere-main' . $min_suffix . '.js', array('jquery','wp-util','bootstrap','jquery-validate'), ERE_PLUGIN_VER, true);
+            wp_enqueue_script(ERE_PLUGIN_PREFIX . 'main', ERE_PLUGIN_URL . 'public/assets/js/ere-main' . $min_suffix . '.js', array('jquery', 'wp-util', 'bootstrap', 'jquery-validate'), ERE_PLUGIN_VER, true);
             wp_localize_script(ERE_PLUGIN_PREFIX . 'main', 'ere_main_vars', array(
                 'ajax_url' => ERE_AJAX_URL,
                 'confirm_yes_text' => esc_html__('Yes', 'essential-real-estate'),
@@ -170,13 +159,13 @@ if (!class_exists('ERE_Public')) {
                 array(
                     'ajax_url' => ERE_AJAX_URL,
                     'compare_button_url' => ere_get_permalink('compare'),
-					'alert_title' => esc_html__('Information!', 'essential-real-estate'),
-					'alert_message' => esc_html__('Only allowed to compare up to 4 properties!', 'essential-real-estate'),
+                    'alert_title' => esc_html__('Information!', 'essential-real-estate'),
+                    'alert_message' => esc_html__('Only allowed to compare up to 4 properties!', 'essential-real-estate'),
                     'alert_not_found' => esc_html__('Compare Page Not Found!', 'essential-real-estate')
                 )
             );
             //Profile
-            wp_register_script(ERE_PLUGIN_PREFIX . 'profile', ERE_PLUGIN_URL . 'public/assets/js/account/ere-profile' . $min_suffix . '.js', array('jquery', 'plupload','jquery-validate'), ERE_PLUGIN_VER, true);
+            wp_register_script(ERE_PLUGIN_PREFIX . 'profile', ERE_PLUGIN_URL . 'public/assets/js/account/ere-profile' . $min_suffix . '.js', array('jquery', 'plupload', 'jquery-validate'), ERE_PLUGIN_VER, true);
             $user_profile_data = array(
                 'ajax_url' => ERE_AJAX_URL,
                 'upload_nonce' => wp_create_nonce('ere_allow_upload_nonce'),
@@ -193,27 +182,25 @@ if (!class_exists('ERE_Public')) {
             $google_map_style = ere_get_option('googlemap_style', '');
             $map_icons_path_marker = ERE_PLUGIN_URL . 'public/assets/images/map-marker-icon.png';
             $googlemap_default_country = ere_get_option('default_country', 'US');
-            $default_marker=ere_get_option('marker_icon','');
-            if($default_marker!='')
-            {
-                if(is_array($default_marker)&& $default_marker['url']!='')
-                {
-                    $map_icons_path_marker=$default_marker['url'];
+            $default_marker = ere_get_option('marker_icon', '');
+            if ($default_marker != '') {
+                if (is_array($default_marker) && $default_marker['url'] != '') {
+                    $map_icons_path_marker = $default_marker['url'];
                 }
             }
             wp_localize_script(ERE_PLUGIN_PREFIX . 'property', 'ere_property_vars', array(
                 'ajax_url' => ERE_AJAX_URL,
-                'googlemap_zoom_level'=>$googlemap_zoom_level,
-                'google_map_style'=>$google_map_style,
-                'googlemap_marker_icon'=>$map_icons_path_marker,
-                'googlemap_default_country'=>$googlemap_default_country,
+                'googlemap_zoom_level' => $googlemap_zoom_level,
+                'google_map_style' => $google_map_style,
+                'googlemap_marker_icon' => $map_icons_path_marker,
+                'googlemap_default_country' => $googlemap_default_country,
                 'upload_nonce' => wp_create_nonce('property_allow_upload'),
                 'file_type_title' => esc_html__('Valid file formats', 'essential-real-estate'),
-                'max_property_images' => ere_get_option('max_property_images','10'),
-                'image_max_file_size' => ere_get_option('image_max_file_size','1000kb'),
-                'max_property_attachments' => ere_get_option('max_property_attachments','2'),
-                'attachment_max_file_size' => ere_get_option('attachment_max_file_size','1000kb'),
-                'attachment_file_type' => ere_get_option('attachment_file_type','pdf,txt,doc,docx'),
+                'max_property_images' => ere_get_option('max_property_images', '10'),
+                'image_max_file_size' => ere_get_option('image_max_file_size', '1000kb'),
+                'max_property_attachments' => ere_get_option('max_property_attachments', '2'),
+                'attachment_max_file_size' => ere_get_option('attachment_max_file_size', '1000kb'),
+                'attachment_file_type' => ere_get_option('attachment_file_type', 'pdf,txt,doc,docx'),
                 'floor_name_text' => esc_html__('Floor Name', 'essential-real-estate'),
                 'floor_size_text' => esc_html__('Floor Size', 'essential-real-estate'),
                 'floor_size_postfix_text' => esc_html__('Floor Size Postfix', 'essential-real-estate'),
@@ -226,8 +213,8 @@ if (!class_exists('ERE_Public')) {
                 'floor_upload_text' => esc_html__('Choose image', 'essential-real-estate'),
                 'ere_metabox_prefix' => ERE_METABOX_PREFIX,
             ));
-            wp_register_script(ERE_PLUGIN_PREFIX . 'property_steps', ERE_PLUGIN_URL . 'public/assets/js/property/ere-property-steps' . $min_suffix . '.js', array('jquery','jquery-validate',ERE_PLUGIN_PREFIX . 'property'), ERE_PLUGIN_VER, true);
-            $property_req_fields = ere_get_option('required_fields',array('property_title', 'property_type', 'property_price', 'property_map_address'));
+            wp_register_script(ERE_PLUGIN_PREFIX . 'property_steps', ERE_PLUGIN_URL . 'public/assets/js/property/ere-property-steps' . $min_suffix . '.js', array('jquery', 'jquery-validate', ERE_PLUGIN_PREFIX . 'property'), ERE_PLUGIN_VER, true);
+            $property_req_fields = ere_get_option('required_fields', array('property_title', 'property_type', 'property_price', 'property_map_address'));
             if (!is_array($property_req_fields)) {
                 $property_req_fields = array();
             }
@@ -254,9 +241,9 @@ if (!class_exists('ERE_Public')) {
                 'processing_text' => esc_html__('Processing, Please wait...', 'essential-real-estate')
             );
             wp_localize_script(ERE_PLUGIN_PREFIX . 'payment', 'ere_payment_vars', $payment_data);
-            wp_enqueue_script( ERE_PLUGIN_PREFIX . 'owl_carousel', ERE_PLUGIN_URL . 'public/assets/js/ere-carousel' . $min_suffix . '.js', array( 'jquery'), ERE_PLUGIN_VER, true );
+            wp_enqueue_script(ERE_PLUGIN_PREFIX . 'owl_carousel', ERE_PLUGIN_URL . 'public/assets/js/ere-carousel' . $min_suffix . '.js', array('jquery'), ERE_PLUGIN_VER, true);
             $enable_captcha = ere_get_option('enable_captcha', array());
-            if (is_array($enable_captcha) && count($enable_captcha)>0) {
+            if (is_array($enable_captcha) && count($enable_captcha) > 0) {
                 $recaptcha_src = esc_url_raw(add_query_arg(array(
                     'render' => 'explicit',
                     'onload' => 'ere_recaptcha_onload_callback'
@@ -277,16 +264,19 @@ if (!class_exists('ERE_Public')) {
         /**
          * @return bool
          */
-        function is_property_taxonomy() {
-            return is_tax( get_object_taxonomies( 'property' ) );
+        function is_property_taxonomy()
+        {
+            return is_tax(get_object_taxonomies('property'));
         }
 
         /**
          * @return bool
          */
-        function is_agent_taxonomy() {
-            return is_tax( get_object_taxonomies( 'agent' ) );
+        function is_agent_taxonomy()
+        {
+            return is_tax(get_object_taxonomies('agent'));
         }
+
         /**
          * @param $template
          * @return string
@@ -313,11 +303,11 @@ if (!class_exists('ERE_Public')) {
                 $find[] = $file;
                 $find[] = ERE()->template_path() . $file;
 
-            } elseif ( $this->is_property_taxonomy() ) {
+            } elseif ($this->is_property_taxonomy()) {
 
-                $term   = get_queried_object();
+                $term = get_queried_object();
 
-                if ( is_tax( 'property-type' ) || is_tax( 'property-status' ) || is_tax( 'property-feature' ) || is_tax( 'property-city' ) || is_tax( 'property-state' ) || is_tax( 'property-label' )|| is_tax( 'property-neighborhood' ) ) {
+                if (is_tax('property-type') || is_tax('property-status') || is_tax('property-feature') || is_tax('property-city') || is_tax('property-state') || is_tax('property-label') || is_tax('property-neighborhood')) {
                     $file = 'taxonomy-' . $term->taxonomy . '.php';
                 } else {
                     $file = 'archive-property.php';
@@ -330,12 +320,11 @@ if (!class_exists('ERE_Public')) {
                 $find[] = $file;
                 $find[] = ERE()->template_path() . $file;
 
-            }
-            elseif ( $this->is_agent_taxonomy() ) {
+            } elseif ($this->is_agent_taxonomy()) {
 
-                $term   = get_queried_object();
+                $term = get_queried_object();
 
-                if ( is_tax( 'agency' )) {
+                if (is_tax('agency')) {
                     $file = 'taxonomy-' . $term->taxonomy . '.php';
                 } else {
                     $file = 'archive-agent.php';
@@ -348,8 +337,7 @@ if (!class_exists('ERE_Public')) {
                 $find[] = $file;
                 $find[] = ERE()->template_path() . $file;
 
-            }
-            elseif (is_post_type_archive('property') || is_page('properties')) {
+            } elseif (is_post_type_archive('property') || is_page('properties')) {
 
                 $file = 'archive-property.php';
                 $find[] = $file;
@@ -360,7 +348,7 @@ if (!class_exists('ERE_Public')) {
                 $file = 'archive-agent.php';
                 $find[] = $file;
                 $find[] = ERE()->template_path() . $file;
-            }  elseif (is_author()) {
+            } elseif (is_author()) {
                 $file = 'author.php';
                 $find[] = $file;
                 $find[] = ERE()->template_path() . $file;

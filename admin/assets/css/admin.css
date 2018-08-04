@@ -134,3 +134,7 @@
     z-index: 9999999;
     line-height: 28px;
 }
+.user-profile-picture
+{
+    display: none;
+}

@@ -3,7 +3,7 @@
  * Plugin Name: Essential Real Estate
  * Plugin URI: https://wordpress.org/plugins/essential-real-estate
  * Description: The latest plugins Real Estate you want. Completely all features, easy customize and override layout, functions. Supported global payment, build market, single, list property, single agent...etc. All fields are defined dynamic, they will help you can build any kind of Real Estate website.
- * Version: 1.5.4
+ * Version: 1.5.6
  * Author: G5Theme
  * Author URI: http://themeforest.net/user/g5theme
  * Text Domain: essential-real-estate
@@ -28,7 +28,7 @@ if (!defined('WPINC')) {
 }
 
 if (!defined('ERE_PLUGIN_VER')) {
-    define('ERE_PLUGIN_VER', '1.5.4');
+    define('ERE_PLUGIN_VER', '1.5.6');
 }
 if (!defined('ERE_PLUGIN_FILE')) {
     define('ERE_PLUGIN_FILE', __FILE__);
@@ -107,4 +107,15 @@ if (!class_exists('GSF_SmartFramework')) {
         return ERE_PLUGIN_URL . 'includes/smart-framework/';
     }
     require_once ERE_PLUGIN_DIR . 'includes/smart-framework/smart-framework.php';
+}
+add_filter('gsf_google_map_api_url', 'ere_google_map_api_url', 1);
+function ere_google_map_api_url()
+{
+    $googlemap_ssl = ere_get_option('googlemap_ssl', 0);
+    $googlemap_api_key = ere_get_option('googlemap_api_key', 'AIzaSyBqmFdSPp4-iY_BG14j_eUeLwOn9Oj4a4Q');
+    if (esc_html($googlemap_ssl) == 1 || is_ssl()) {
+        return 'https://maps-api-ssl.google.com/maps/api/js?libraries=places&language=' . get_locale() . '&key=' . esc_html($googlemap_api_key);
+    } else {
+        return 'http://maps.googleapis.com/maps/api/js?libraries=places&language=' . get_locale() . '&key=' . esc_html($googlemap_api_key);
+    }
 }

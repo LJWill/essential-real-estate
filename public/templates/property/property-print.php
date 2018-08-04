@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 /**
@@ -148,7 +148,7 @@ $measurement_units = ere_get_measurement_units();
                                     <?php if (!empty($price_prefix)) {
                                         echo '<span class="property-price-prefix">' . $price_prefix . ' </span>';
                                     } ?>
-                                    <?php echo ere_get_format_money($price_short,$price_unit) ?>
+                                    <?php echo ere_get_format_money($price_short, $price_unit) ?>
                                     <?php if (!empty($price_postfix)) {
                                         echo '<span class="property-price-postfix"> / ' . $price_postfix . '</span>';
                                     } ?>
@@ -204,7 +204,7 @@ $measurement_units = ere_get_measurement_units();
                                 <p class="property-info-value"><?php echo esc_html($property_bedrooms) ?></p>
 
                                 <p class="property-info-title"><?php
-                                    echo ere_get_number_text($property_bedrooms, esc_html__( 'Bedrooms', 'essential-real-estate' ), esc_html__( 'Bedroom', 'essential-real-estate' ));
+                                    echo ere_get_number_text($property_bedrooms, esc_html__('Bedrooms', 'essential-real-estate'), esc_html__('Bedroom', 'essential-real-estate'));
                                     ?></p>
                             </div>
                         </div>
@@ -217,7 +217,7 @@ $measurement_units = ere_get_measurement_units();
                                 <p class="property-info-value"><?php echo esc_html($property_bathrooms) ?></p>
 
                                 <p class="property-info-title"><?php
-                                    echo ere_get_number_text($property_bathrooms, esc_html__( 'Bathrooms', 'essential-real-estate' ), esc_html__( 'Bathroom', 'essential-real-estate' ));
+                                    echo ere_get_number_text($property_bathrooms, esc_html__('Bathrooms', 'essential-real-estate'), esc_html__('Bathroom', 'essential-real-estate'));
                                     ?></p>
                             </div>
                         </div>
@@ -305,7 +305,7 @@ $measurement_units = ere_get_measurement_units();
                                     <?php if (!empty($price_prefix)) {
                                         echo '<span class="property-price-prefix">' . $price_prefix . ' </span>';
                                     } ?>
-                                    <?php echo ere_get_format_money($price_short,$price_unit) ?>
+                                    <?php echo ere_get_format_money($price_short, $price_unit) ?>
                                     <?php if (!empty($price_postfix)) {
                                         echo '<span class="property-price-postfix"> / ' . $price_postfix . '</span>';
                                     } ?>
@@ -388,6 +388,33 @@ $measurement_units = ere_get_measurement_units();
                             <span><?php echo sprintf('%s %s', $property_garage_size, $measurement_units); ?></span>
                         </li>
                     <?php endif; ?>
+                    <?php
+                    $additional_fields = ere_render_additional_fields();
+                    if (count($additional_fields) > 0):
+                        foreach ($additional_fields as $key => $field):
+                            $property_field = get_post_meta($property_id, $field['id'], true);
+                            if (!empty($property_field)):?>
+                                <li>
+                                    <strong><?php echo esc_html($field['title']); ?></strong>
+                                <span><?php
+                                    if ($field['type'] == 'checkbox_list') {
+                                        $text = '';
+                                        if (count($property_field) > 0) {
+                                            foreach ($property_field as $value => $v) {
+                                                $text .= $v . ', ';
+                                            }
+                                        }
+                                        $text = rtrim($text, ', ');
+                                        echo esc_html($text);
+                                    } else {
+                                        echo esc_html($property_field);
+                                    }
+                                    ?></span>
+                                </li>
+                                <?php
+                            endif;
+                        endforeach;
+                    endif; ?>
                     <?php for ($i = 0; $i < $additional_features; $i++) { ?>
                         <?php if (!empty($additional_feature_title[$i]) && !empty($additional_feature_value[$i])): ?>
                             <li>
@@ -524,13 +551,10 @@ $measurement_units = ere_get_measurement_units();
                                     $author_picture_id = get_the_author_meta(ERE_METABOX_PREFIX . 'author_picture_id', $user_id);
                                     $avatar_src = ere_image_resize_id($author_picture_id, $width, $height, true);
 
-                                    if(empty($user_info->first_name) && empty($user_info->last_name))
-                                    {
-                                        $agent_name=$user_info->user_login;
-                                    }
-                                    else
-                                    {
-                                        $agent_name     = $user_info->first_name . ' ' . $user_info->last_name;
+                                    if (empty($user_info->first_name) && empty($user_info->last_name)) {
+                                        $agent_name = $user_info->user_login;
+                                    } else {
+                                        $agent_name = $user_info->first_name . ' ' . $user_info->last_name;
                                     }
                                     $agent_facebook_url = get_the_author_meta(ERE_METABOX_PREFIX . 'author_facebook_url', $user_id);
                                     $agent_twitter_url = get_the_author_meta(ERE_METABOX_PREFIX . 'author_twitter_url', $user_id);
@@ -546,16 +570,13 @@ $measurement_units = ere_get_measurement_units();
                                     $agent_office_address = get_the_author_meta(ERE_METABOX_PREFIX . 'author_office_address', $user_id);
                                     $agent_website_url = get_the_author_meta('user_url', $user_id);
                                     $author_agent_id = get_the_author_meta(ERE_METABOX_PREFIX . 'author_agent_id', $user_id);
-                                    if(empty($author_agent_id))
-                                    {
-                                        $agent_position = esc_html__( 'Property Seller', 'essential-real-estate' );
-                                        $agent_type = esc_html__( 'Seller', 'essential-real-estate' );
+                                    if (empty($author_agent_id)) {
+                                        $agent_position = esc_html__('Property Seller', 'essential-real-estate');
+                                        $agent_type = esc_html__('Seller', 'essential-real-estate');
                                         $agent_link = get_author_posts_url($user_id);
-                                    }
-                                    else
-                                    {
-                                        $agent_position = esc_html__( 'Property Agent', 'essential-real-estate' );
-                                        $agent_type = esc_html__( 'Agent', 'essential-real-estate' );
+                                    } else {
+                                        $agent_position = esc_html__('Property Agent', 'essential-real-estate');
+                                        $agent_type = esc_html__('Agent', 'essential-real-estate');
                                         $agent_link = get_the_permalink($author_agent_id);
                                     }
                                 } else {
@@ -591,90 +612,96 @@ $measurement_units = ere_get_measurement_units();
                             }
                             ?>
                             <?php if ($agent_display_option != 'other_info'): ?>
-                                <div class="agent-avatar">
-                                    <img
-                                        src="<?php echo esc_url($avatar_src) ?>"
-                                        onerror="this.src = '<?php echo esc_url($no_avatar_src) ?>';"
-                                        alt="<?php echo esc_attr($agent_name) ?>"
-                                        title="<?php echo esc_attr($agent_name) ?>">
-                                </div>
-                                <div class="agent-content">
-                                    <div class="agent-heading">
-                                        <?php if (!empty($agent_name)): ?>
-                                            <h4><?php echo esc_html($agent_name) ?></h4>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_position)): ?>
-                                            <span class="fw-normal"><?php echo esc_html($agent_position) ?></span>
-                                        <?php endif; ?>
+                                <div class="list-2-col">
+                                    <div class="agent-avatar">
+                                        <img
+                                            src="<?php echo esc_url($avatar_src) ?>"
+                                            onerror="this.src = '<?php echo esc_url($no_avatar_src) ?>';"
+                                            alt="<?php echo esc_attr($agent_name) ?>"
+                                            title="<?php echo esc_attr($agent_name) ?>">
                                     </div>
-                                    <div class="agent-social">
-                                        <?php if (!empty($agent_facebook_url)): ?>
-                                            <p><i class="fa fa-facebook"></i><?php echo esc_url($agent_facebook_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_twitter_url)): ?>
-                                            <p><i class="fa fa-twitter"></i><?php echo esc_url($agent_twitter_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_googleplus_url)): ?>
-                                            <p>
-                                                <i class="fa fa-google-plus"></i><?php echo esc_url($agent_googleplus_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_skype)): ?>
-                                            <p><i class="fa fa-skype"></i><?php echo esc_html($agent_skype); ?></p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_linkedin_url)): ?>
-                                            <p><i class="fa fa-linkedin"></i><?php echo esc_url($agent_linkedin_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_pinterest_url)): ?>
-                                            <p>
-                                                <i class="fa fa-pinterest"></i><?php echo esc_url($agent_pinterest_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_instagram_url)): ?>
-                                            <p>
-                                                <i class="fa fa-instagram"></i><?php echo esc_url($agent_instagram_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_youtube_url)): ?>
-                                            <p>
-                                                <i class="fa fa-youtube-play"></i><?php echo esc_url($agent_youtube_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_vimeo_url)): ?>
-                                            <p><i class="fa fa-vimeo"></i><?php echo esc_url($agent_vimeo_url); ?></p>
-                                        <?php endif; ?>
-                                    </div>
-                                    <div class="agent_info">
-                                        <?php if (!empty($agent_office_address)): ?>
-                                            <p>
-                                                <i class="fa fa-map-marker accent-color"></i><?php echo esc_html($agent_office_address); ?>
-                                            </p>
-
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_mobile_number)): ?>
-                                            <p>
-                                                <i class="fa fa-phone accent-color"></i><?php echo esc_html($agent_mobile_number); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($email)): ?>
-                                            <p>
-                                                <i class="fa fa-envelope accent-color"></i><?php echo esc_html($email); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                        <?php if (!empty($agent_website_url)): ?>
-                                            <p>
-                                                <i class="fa fa-link accent-color"></i><?php echo esc_url($agent_website_url); ?>
-                                            </p>
-                                        <?php endif; ?>
-                                    </div>
-                                    <?php if (!empty($agent_description)): ?>
-                                        <div class="description">
-                                            <?php echo wp_kses_post($agent_description); ?>
+                                    <div class="agent-content">
+                                        <div class="agent-heading">
+                                            <?php if (!empty($agent_name)): ?>
+                                                <h4><?php echo esc_html($agent_name) ?></h4>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_position)): ?>
+                                                <span class="fw-normal"><?php echo esc_html($agent_position) ?></span>
+                                            <?php endif; ?>
                                         </div>
-                                    <?php endif; ?>
+                                        <div class="agent-social">
+                                            <?php if (!empty($agent_facebook_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-facebook"></i><?php echo esc_url($agent_facebook_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_twitter_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-twitter"></i><?php echo esc_url($agent_twitter_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_googleplus_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-google-plus"></i><?php echo esc_url($agent_googleplus_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_skype)): ?>
+                                                <p><i class="fa fa-skype"></i><?php echo esc_html($agent_skype); ?></p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_linkedin_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-linkedin"></i><?php echo esc_url($agent_linkedin_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_pinterest_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-pinterest"></i><?php echo esc_url($agent_pinterest_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_instagram_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-instagram"></i><?php echo esc_url($agent_instagram_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_youtube_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-youtube-play"></i><?php echo esc_url($agent_youtube_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_vimeo_url)): ?>
+                                                <p><i class="fa fa-vimeo"></i><?php echo esc_url($agent_vimeo_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="agent_info">
+                                            <?php if (!empty($agent_office_address)): ?>
+                                                <p>
+                                                    <i class="fa fa-map-marker accent-color"></i><?php echo esc_html($agent_office_address); ?>
+                                                </p>
+
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_mobile_number)): ?>
+                                                <p>
+                                                    <i class="fa fa-phone accent-color"></i><?php echo esc_html($agent_mobile_number); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($email)): ?>
+                                                <p>
+                                                    <i class="fa fa-envelope accent-color"></i><?php echo esc_html($email); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                            <?php if (!empty($agent_website_url)): ?>
+                                                <p>
+                                                    <i class="fa fa-link accent-color"></i><?php echo esc_url($agent_website_url); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php if (!empty($agent_description)): ?>
+                                            <div class="description">
+                                                <?php echo wp_kses_post($agent_description); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             <?php else: ?>
                                 <div class="agent-content">

@@ -1,5 +1,12 @@
 Changelog
 =========
+#### 1.5.6 - July 26, 2018
+** Fix: "For development purposes only" problem of property map on admin dashboard
+** New: Allow to update all user information via admin dashboard
+
+#### 1.5.5 - July 13, 2018
+** Fix: Duplicate email sent to admin when registering new user
+
 #### 1.5.4 - June 29, 2018
 ** New: Allow to change the measurement units for Land Area
 

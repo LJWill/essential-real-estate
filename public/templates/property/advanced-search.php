@@ -15,8 +15,6 @@ $city = isset($_GET['city']) ? $_GET['city'] : '';
 $status_default=ere_get_property_status_default_value();
 $status = isset($_GET['status']) ? $_GET['status'] :$status_default;
 $type = isset($_GET['type']) ? $_GET['type'] : '';
-$hometype = isset($_GET['hometype']) ? $_GET['hometype'] : '';
-$leaseterm = isset($_GET['leaseterm']) ? $_GET['leaseterm'] : '';
 $bedrooms = isset($_GET['bedrooms']) ? $_GET['bedrooms'] : '';
 $bathrooms = isset($_GET['bathrooms']) ? $_GET['bathrooms'] : '';
 $min_price = isset($_GET['min-price']) ? $_GET['min-price'] : '';
@@ -168,26 +166,6 @@ if (isset($type) && !empty($type)) {
         'terms' => $type
     );
     $parameters.=sprintf( __('Type: <strong>%s</strong>; ', 'essential-real-estate'), $type );
-}
-
-//tax query property hometype
-if (isset($hometype) && !empty($hometype)) {
-    $tax_query[] = array(
-        'taxonomy' => 'property-hometype',
-        'field' => 'slug',
-        'terms' => $hometype
-    );
-    $parameters.=sprintf( __('Type: <strong>%s</strong>; ', 'essential-real-estate'), $hometype );
-}
-
-//tax query property leaseterm
-if (isset($leaseterm) && !empty($leaseterm)) {
-    $tax_query[] = array(
-        'taxonomy' => 'property-leaseterm',
-        'field' => 'slug',
-        'terms' => $leaseterm
-    );
-    $parameters.=sprintf( __('Type: <strong>%s</strong>; ', 'essential-real-estate'), $leaseterm );
 }
 
 //tax query property status

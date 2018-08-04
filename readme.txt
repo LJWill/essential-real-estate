@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: real estate, agency, agent, realtor, property
 Requires at least: 4.5
 Tested up to: 4.9.1
-Stable tag: 1.5.4
+Stable tag: 1.5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,8 @@ FREE plugins but already all PREMIUM FEATURES.
 * Download zip file: [sample-data.zip](http://document.g5plus.net/essential-real-estate/sample-data.zip)
 
 == Add-ons ==
-* [ERE Colors - Addons Free](http://plugins.g5plus.net/ere/add-ons/)
+* [ERE Colors - Addons Free](http://plugins.g5plus.net/ere/add-ons/#ere_colors)
+* [ERE Recently Viewed - Addons Free](http://plugins.g5plus.net/ere/add-ons/#ere_recently_viewed)
 
 = Demo with premium theme =
 * [FrontEnd](http://demo.g5plus.net/?theme=beyot) (acount: demo/demo)
@@ -97,6 +98,13 @@ Yes! it's always will be free.
 10. Listing properties with features on frontend
 
 == Changelog ==
+= 1.5.6 =
+* Fix: "For development purposes only" problem of property map on admin dashboard
+* New: Allow to update all user information via admin dashboard
+
+= 1.5.5 =
+* Fix: Duplicate email sent to admin when registering new user
+
 = 1.5.4 =
 * New: Allow to change the measurement units for Land Area
 

@@ -67,7 +67,7 @@ if (!class_exists('ERE_Profile')) {
             $user_id = $current_user->ID;
             check_ajax_referer('ere_update_profile_ajax_nonce', 'ere_security_update_profile');
 
-            $user_firstname = $user_lastname = $user_des = $user_position = $user_email = $user_mobile_number = $user_fax_number = $user_company = $user_office_number = $user_office_address = $user_facebook_url = $user_twitter_url = $user_googleplus_url = $user_linkedin_url = $user_pinterest_url = $user_instagram_url = $user_skype = $user_youtube_url = $user_vimeo_url = $user_website_url = '';
+            $user_firstname = $user_lastname = $user_des = $user_position = $user_email = $user_mobile_number = $user_fax_number = $user_company = $user_office_number = $user_office_address = $user_licenses=$user_facebook_url = $user_twitter_url = $user_googleplus_url = $user_linkedin_url = $user_pinterest_url = $user_instagram_url = $user_skype = $user_youtube_url = $user_vimeo_url = $user_website_url = '';
             $profile_pic_id = '';
 
             // Update first name
@@ -277,6 +277,7 @@ if (!class_exists('ERE_Profile')) {
                 update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_company', $user_company);
                 update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_office_number', $user_office_number);
                 update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_office_address', $user_office_address);
+                update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_licenses', $user_licenses);
                 update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_facebook_url', $user_facebook_url);
                 update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_twitter_url', $user_twitter_url);
                 update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_googleplus_url', $user_googleplus_url);
@@ -311,6 +312,7 @@ if (!class_exists('ERE_Profile')) {
             echo json_encode($ajax_response);
             wp_die();
         }
+
         /**
          * Register user as seller
          */
@@ -327,13 +329,12 @@ if (!class_exists('ERE_Profile')) {
                 $agent_lastname = $current_user->last_name;
                 $agent_description = $current_user->description;
                 if (!empty($agent_firstname) || !empty($agent_lastname)) {
-                    $full_name=$agent_firstname . ' ' . $agent_lastname;
+                    $full_name = $agent_firstname . ' ' . $agent_lastname;
                 }
-                $post_status='publish';
+                $post_status = 'publish';
                 $auto_approved_agent = ere_get_option('auto_approved_agent', 1);
-                if($auto_approved_agent!=1)
-                {
-                    $post_status='pending';
+                if ($auto_approved_agent != 1) {
+                    $post_status = 'pending';
                 }
                 //Insert Agent
                 $agent_id = wp_insert_post(array(
@@ -343,8 +344,7 @@ if (!class_exists('ERE_Profile')) {
                     'post_content' => $agent_description
                 ));
                 if ($agent_id > 0) {
-                    if($auto_approved_agent!=1)
-                    {
+                    if ($auto_approved_agent != 1) {
                         $args = array(
                             'agent_name' => $full_name,
                             'agent_url' => get_permalink($agent_id)
@@ -394,12 +394,9 @@ if (!class_exists('ERE_Profile')) {
                     update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_vimeo_url', $agent_vimeo_url);
                     update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_website_url', $agent_website_url);
                     update_post_meta($agent_id, '_thumbnail_id', $author_picture_id);
-                    if($auto_approved_agent!=1)
-                    {
+                    if ($auto_approved_agent != 1) {
                         $ajax_response = array('success' => true, 'message' => 'You have successfully registered and is pending approval by an admin!');
-                    }
-                    else
-                    {
+                    } else {
                         $ajax_response = array('success' => true, 'message' => 'You have successfully registered!');
                     }
                 } else {
@@ -446,33 +443,6 @@ if (!class_exists('ERE_Profile')) {
             wp_die();
         }
 
-        /**
-         * user_info
-         * @param $info
-         * @return mixed
-         */
-        public function user_info($info)
-        {
-            $info[ERE_METABOX_PREFIX . 'author_position'] = esc_html__('Position', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_mobile_number'] = esc_html__('Mobile', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_fax_number'] = esc_html__('Fax Number', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_company'] = esc_html__('Company Name', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_office_address'] = esc_html__('Office Address', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_office_number'] = esc_html__('Office Number', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_skype'] = esc_html__('Skype', 'essential-real-estate');
-
-            $info[ERE_METABOX_PREFIX . 'author_facebook_url'] = esc_html__('Facebook', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_linkedin_url'] = esc_html__('LinkedIn', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_twitter_url'] = esc_html__('Twitter', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_pinterest_url'] = esc_html__('Pinterest', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_instagram_url'] = esc_html__('Instagram', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_youtube_url'] = esc_html__('Youtube', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_vimeo_url'] = esc_html__('Vimeo', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_googleplus_url'] = esc_html__('Google Plus', 'essential-real-estate');
-            $info[ERE_METABOX_PREFIX . 'author_custom_picture'] = esc_html__('Picture Url', 'essential-real-estate');
-            return $info;
-        }
-
         public function profile_update($user_id)
         {
             $agent_id = get_the_author_meta(ERE_METABOX_PREFIX . 'author_agent_id', $user_id);
@@ -494,8 +464,7 @@ if (!class_exists('ERE_Profile')) {
             } else {
                 $ere_package = new ERE_Package();
                 $package_unlimited_time = get_post_meta($package_id, ERE_METABOX_PREFIX . 'package_unlimited_time', true);
-                if($package_unlimited_time==0)
-                {
+                if ($package_unlimited_time == 0) {
                     $expired_date = $ere_package->get_expired_time($package_id, $user_id);
                     $today = time();
                     if ($today > $expired_date) {
@@ -508,6 +477,298 @@ if (!class_exists('ERE_Profile')) {
                 }
             }
             return 1;
+        }
+
+        public function custom_user_profile_fields($user)
+        {
+            $agent_id = get_the_author_meta(ERE_METABOX_PREFIX . 'author_agent_id', $user->ID);
+            $is_agent=(!empty($agent_id) && (get_post_type($agent_id) == 'agent'));
+            $picture_url=get_the_author_meta(ERE_METABOX_PREFIX . 'author_custom_picture', $user->ID);
+            if(empty($picture_url)&& $is_agent)
+            {
+                $picture_url=get_the_post_thumbnail_url($agent_id);
+            }
+            ?>
+            <h3><?php esc_html_e('Profile Info', 'essential-real-estate'); ?></h3>
+            <table class="form-table">
+                <tbody>
+                <tr class="author-custom-picture-wrap">
+                    <th><label><?php echo esc_html__('Profile Picture', 'essential-real-estate'); ?></label></th>
+                    <td>
+                        <img width="96px"
+                             src="<?php echo esc_url($picture_url); ?>">
+                    </td>
+                </tr>
+                <tr class="author-mobile-number-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_mobile_number"><?php echo esc_html__('Mobile', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_mobile_number"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_mobile_number"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_mobile_number', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-fax-number-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_fax_number"><?php echo esc_html__('Fax Number', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_fax_number"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_fax_number"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_fax_number', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-skype-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_skype"><?php echo esc_html__('Skype', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_skype"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_skype"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_skype', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <?php
+                if ($is_agent):?>
+                    <tr class="author-company-wrap">
+                        <th><label
+                                for="<?php echo ERE_METABOX_PREFIX; ?>author_company"><?php echo esc_html__('Company Name', 'essential-real-estate'); ?></label>
+                        </th>
+                        <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_company"
+                                   id="<?php echo ERE_METABOX_PREFIX; ?>author_company"
+                                   value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_company', $user->ID)); ?>"
+                                   class="regular-text"></td>
+                    </tr>
+                    <tr class="author_position-wrap">
+                        <th><label
+                                for="<?php echo ERE_METABOX_PREFIX; ?>author_position"><?php esc_html_e('Position', 'essential-real-estate'); ?></label>
+                        </th>
+                        <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_position"
+                                   id="<?php echo ERE_METABOX_PREFIX; ?>author_position"
+                                   value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_position', $user->ID)); ?>"
+                                   class="regular-text"></td>
+                    </tr>
+                    <tr class="author-office-address-wrap">
+                        <th><label
+                                for="<?php echo ERE_METABOX_PREFIX; ?>author_office_address"><?php echo esc_html__('Office Address', 'essential-real-estate'); ?></label>
+                        </th>
+                        <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_office_address"
+                                   id="<?php echo ERE_METABOX_PREFIX; ?>author_office_address"
+                                   value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_office_address', $user->ID)); ?>"
+                                   class="regular-text"></td>
+                    </tr>
+                    <tr class="author-office-number-wrap">
+                        <th><label
+                                for="<?php echo ERE_METABOX_PREFIX; ?>author_office_number"><?php echo esc_html__('Office Number', 'essential-real-estate'); ?></label>
+                        </th>
+                        <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_office_number"
+                                   id="<?php echo ERE_METABOX_PREFIX; ?>author_office_number"
+                                   value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_office_number', $user->ID)); ?>"
+                                   class="regular-text"></td>
+                    </tr>
+                    <tr class="author-licenses-wrap">
+                        <th><label
+                                for="<?php echo ERE_METABOX_PREFIX; ?>author_licenses"><?php echo esc_html__('Licenses', 'essential-real-estate'); ?></label>
+                        </th>
+                        <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_licenses"
+                                   id="<?php echo ERE_METABOX_PREFIX; ?>author_licenses"
+                                   value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_licenses', $user->ID)); ?>"
+                                   class="regular-text"></td>
+                    </tr>
+                    <tr class="author-agent-id-wrap">
+                        <th><label
+                                for="<?php echo ERE_METABOX_PREFIX; ?>author_agent_id"><?php echo esc_html__('Agent Id', 'essential-real-estate'); ?></label>
+                        </th>
+                        <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_agent_id"
+                                   id="<?php echo ERE_METABOX_PREFIX; ?>author_agent_id"
+                                   value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_agent_id', $user->ID)); ?>"
+                                   class="regular-text"></td>
+                    </tr>
+                <?php endif; ?>
+                </tbody>
+            </table>
+            <?php
+            $paid_submission_type = ere_get_option('paid_submission_type', 'no');
+            if ($paid_submission_type == 'per_package'):
+                $package_id = get_the_author_meta(ERE_METABOX_PREFIX . 'package_id', $user->ID);
+                if ($package_id > 0):
+                    $package_remaining_listings = get_the_author_meta(ERE_METABOX_PREFIX . 'package_number_listings', $user->ID);
+                    $package_featured_remaining_listings = get_the_author_meta(ERE_METABOX_PREFIX . 'package_number_featured', $user->ID);
+                    if ($package_remaining_listings == -1) {
+                        $package_remaining_listings = esc_html__('Unlimited', 'essential-real-estate');
+                    }
+                    $package_title = get_the_title($package_id);
+                    $package_listings = get_post_meta($package_id, ERE_METABOX_PREFIX . 'package_number_listings', true);
+                    $package_unlimited_listing = get_post_meta($package_id, ERE_METABOX_PREFIX . 'package_unlimited_listing', true);
+                    $package_featured_listings = get_post_meta($package_id, ERE_METABOX_PREFIX . 'package_number_featured', true);
+                    $ere_package = new ERE_Package();
+                    $expired_date = $ere_package->get_expired_date($package_id, $user->ID);
+                    ?>
+                    <h2><?php echo esc_html__('Package Info', 'essential-real-estate'); ?></h2>
+                    <table class="form-table">
+                        <tbody>
+                        <tr class="user-package-id-wrap">
+                            <th><label><?php echo esc_html__('Package Id', 'essential-real-estate'); ?></label></th>
+                            <td><?php echo esc_html($package_id); ?></td>
+                        </tr>
+                        <tr class="user-package-name-wrap">
+                            <th><label><?php echo esc_html__('Package Name', 'essential-real-estate'); ?></label></th>
+                            <td><?php echo esc_html($package_title); ?></td>
+                        </tr>
+                        <tr class="user-package-remaining-listings-wrap">
+                            <th><label><?php echo esc_html__('Listings Included', 'essential-real-estate'); ?></label>
+                            </th>
+                            <td><?php if ($package_unlimited_listing == 1) {
+                                    echo($package_remaining_listings);
+                                } else {
+                                    echo esc_html($package_listings);
+                                }
+                                ?></td>
+                        </tr>
+                        <tr class="user-package-remaining-listings-wrap">
+                            <th><label><?php echo esc_html__('Listings Remaining', 'essential-real-estate'); ?></label>
+                            </th>
+                            <td><?php echo esc_html($package_remaining_listings); ?></td>
+                        </tr>
+                        <tr class="user-package-featured-wrap">
+                            <th><label><?php echo esc_html__('Featured Included', 'essential-real-estate'); ?></label>
+                            </th>
+                            <td><?php echo esc_html($package_featured_listings); ?></td>
+                        </tr>
+                        <tr class="user-package-remaining-wrap">
+                            <th><label><?php echo esc_html__('Featured Remaining', 'essential-real-estate'); ?></label>
+                            </th>
+                            <td><?php echo esc_html($package_featured_remaining_listings); ?></td>
+                        </tr>
+                        <tr class="user-package-end-date-wrap">
+                            <th><label><?php echo esc_html__('End Date', 'essential-real-estate'); ?></label></th>
+                            <td><?php echo esc_html($expired_date); ?></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                <?php endif;
+            endif; ?>
+            <h2><?php echo esc_html__('Social Profiles', 'essential-real-estate'); ?></h2>
+            <table class="form-table">
+                <tbody>
+                <tr class="author-facebook-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_facebook_url"><?php echo esc_html__('Facebook', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_facebook_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_facebook_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_facebook_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-twitter-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_twitter_url"><?php echo esc_html__('Twitter', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_twitter_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_twitter_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_twitter_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-linkedin-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_linkedin_url"><?php echo esc_html__('LinkedIn', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_linkedin_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_linkedin_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_linkedin_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-pinterest-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_pinterest_url"><?php echo esc_html__('Pinterest', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_pinterest_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_pinterest_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_pinterest_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-instagram-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_instagram_url"><?php echo esc_html__('Instagram', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_instagram_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_instagram_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_instagram_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-youtube-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_youtube_url"><?php echo esc_html__('Youtube', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_youtube_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_youtube_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_youtube_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-vimeo-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_vimeo_url"><?php echo esc_html__('Vimeo', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_vimeo_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_vimeo_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_vimeo_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                <tr class="author-googleplus-url-wrap">
+                    <th><label
+                            for="<?php echo ERE_METABOX_PREFIX; ?>author_googleplus_url"><?php echo esc_html__('Google Plus', 'essential-real-estate'); ?></label>
+                    </th>
+                    <td><input type="text" name="<?php echo ERE_METABOX_PREFIX; ?>author_googleplus_url"
+                               id="<?php echo ERE_METABOX_PREFIX; ?>author_googleplus_url"
+                               value="<?php echo esc_attr(get_the_author_meta(ERE_METABOX_PREFIX . 'author_googleplus_url', $user->ID)); ?>"
+                               class="regular-text"></td>
+                </tr>
+                </tbody>
+            </table>
+            <?php
+        }
+
+        public function update_custom_user_profile_fields($user_id)
+        {
+            if (current_user_can('edit_user', $user_id)) {
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_mobile_number', $_POST[ERE_METABOX_PREFIX . 'author_mobile_number']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_fax_number', $_POST[ERE_METABOX_PREFIX . 'author_fax_number']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_skype', $_POST[ERE_METABOX_PREFIX . 'author_skype']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_facebook_url', $_POST[ERE_METABOX_PREFIX . 'author_facebook_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_twitter_url', $_POST[ERE_METABOX_PREFIX . 'author_twitter_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_linkedin_url', $_POST[ERE_METABOX_PREFIX . 'author_linkedin_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_pinterest_url', $_POST[ERE_METABOX_PREFIX . 'author_pinterest_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_instagram_url', $_POST[ERE_METABOX_PREFIX . 'author_instagram_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_youtube_url', $_POST[ERE_METABOX_PREFIX . 'author_youtube_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_vimeo_url', $_POST[ERE_METABOX_PREFIX . 'author_vimeo_url']);
+                update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_googleplus_url', $_POST[ERE_METABOX_PREFIX . 'author_googleplus_url']);
+                $agent_id = $_POST[ERE_METABOX_PREFIX . 'author_agent_id'];
+                if (intval($agent_id) > 0 && get_post_type($agent_id) == 'agent') {
+                    update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_agent_id', $agent_id);
+                    update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_company', $_POST[ERE_METABOX_PREFIX . 'author_company']);
+                    update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_position', $_POST[ERE_METABOX_PREFIX . 'author_position']);
+                    update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_office_address', $_POST[ERE_METABOX_PREFIX . 'author_office_address']);
+                    update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_office_number', $_POST[ERE_METABOX_PREFIX . 'author_office_number']);
+                    update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_licenses', $_POST[ERE_METABOX_PREFIX . 'author_licenses']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_description', $_POST['description']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_email', $_POST['email']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_website_url', $_POST['url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_position', $_POST[ERE_METABOX_PREFIX . 'author_position']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_mobile_number', $_POST[ERE_METABOX_PREFIX . 'author_mobile_number']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_fax_number', $_POST[ERE_METABOX_PREFIX . 'author_fax_number']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_company', $_POST[ERE_METABOX_PREFIX . 'author_company']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_office_number', $_POST[ERE_METABOX_PREFIX . 'author_office_address']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_office_address', $_POST[ERE_METABOX_PREFIX . 'author_office_number']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_licenses', $_POST[ERE_METABOX_PREFIX . 'author_licenses']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_skype', $_POST[ERE_METABOX_PREFIX . 'author_skype']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_facebook_url', $_POST[ERE_METABOX_PREFIX . 'author_facebook_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_twitter_url', $_POST[ERE_METABOX_PREFIX . 'author_twitter_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_googleplus_url', $_POST[ERE_METABOX_PREFIX . 'author_googleplus_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_linkedin_url', $_POST[ERE_METABOX_PREFIX . 'author_linkedin_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_pinterest_url', $_POST[ERE_METABOX_PREFIX . 'author_pinterest_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_instagram_url', $_POST[ERE_METABOX_PREFIX . 'author_instagram_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_youtube_url', $_POST[ERE_METABOX_PREFIX . 'author_youtube_url']);
+                    update_post_meta($agent_id, ERE_METABOX_PREFIX . 'agent_vimeo_url', $_POST[ERE_METABOX_PREFIX . 'author_vimeo_url']);
+                }
+            }
         }
     }
 }

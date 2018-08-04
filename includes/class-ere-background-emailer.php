@@ -40,9 +40,14 @@ class ERE_Background_Emailer extends WP_Background_Process {
 	 *
 	 * @return mixed
 	 */
+	public function __construct() {
+		parent::__construct();
+		add_action( 'shutdown', array( $this, 'dispatch_queue' ), 1000 );
+	}
 
 	protected function task( $callback ) {
 		if ( isset($callback['email'] ) ) {
+			//error_log(json_encode($callback));
 			try {
 				$email=$callback['email'];
 				$email_type=$callback['email_type'];
@@ -80,5 +85,11 @@ class ERE_Background_Emailer extends WP_Background_Process {
 			}
 		}
 		return false;
+	}
+
+	public function dispatch_queue() {
+		if ( ! empty( $this->data ) ) {
+			$this->save()->dispatch();
+		}
 	}
 }

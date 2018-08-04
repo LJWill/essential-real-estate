@@ -153,7 +153,7 @@ if (!class_exists('ERE_Admin_Agent')) {
             $user_as_agent = ere_get_option('user_as_agent', 1);
             if ($user_as_agent) {
                 $allowed_html = array();
-                $user_id = get_post_meta($post_id, ERE_METABOX_PREFIX . 'agent_user_id', true);
+
                 $agent_description = wp_kses($_POST[ERE_METABOX_PREFIX . 'agent_description'], $allowed_html);
                 $agent_position = wp_kses($_POST[ERE_METABOX_PREFIX . 'agent_position'], $allowed_html);
                 $agent_email = wp_kses($_POST[ERE_METABOX_PREFIX . 'agent_email'], $allowed_html);
@@ -176,7 +176,7 @@ if (!class_exists('ERE_Admin_Agent')) {
 
                 $image_id = get_post_thumbnail_id($post_id);
                 $full_img = wp_get_attachment_image_src($image_id, 'full');
-
+                $user_id = get_post_meta($post_id, ERE_METABOX_PREFIX . 'agent_user_id', true);
                 update_user_meta($user_id, 'aim', '/' . $full_img[0] . '/');
                 update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_position', $agent_position);
                 update_user_meta($user_id, ERE_METABOX_PREFIX . 'author_company', $agent_company);

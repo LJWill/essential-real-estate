@@ -246,8 +246,9 @@ wp_enqueue_script( ERE_PLUGIN_PREFIX . 'owl_carousel', ERE_PLUGIN_URL . 'public/
 													$property_status = get_the_terms( get_the_ID(), 'property-status' );
 													if ( $property_status ) : ?>
 														<div class="property-status">
-															<?php foreach ( $property_status as $status ) : ?>
-																<span><?php echo esc_attr( $status->name ); ?></span>
+															<?php foreach ( $property_status as $status ) :
+																$status_color = get_term_meta($status->term_id, 'property_status_color', true);?>
+																<span style="background-color: <?php echo esc_attr($status_color) ?>"><?php echo esc_attr( $status->name ); ?></span>
 															<?php endforeach; ?>
 														</div>
 													<?php endif; ?>

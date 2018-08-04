@@ -143,8 +143,9 @@ $property_content_attributes[] = "data-plugin-options='{" . implode( ', ', $owl_
 											<?php endif; ?>
 											<?php if ( $property_status ) : ?>
 												<div class="property-status">
-													<?php foreach ( $property_status as $status ) : ?>
-														<span><?php echo esc_attr( $status->name ); ?></span>
+													<?php foreach ( $property_status as $status ) :
+														$status_color = get_term_meta($status->term_id, 'property_status_color', true);?>
+														<span style="background-color: <?php echo esc_attr($status_color) ?>"><?php echo esc_attr( $status->name ); ?></span>
 													<?php endforeach; ?>
 												</div>
 											<?php endif; ?>

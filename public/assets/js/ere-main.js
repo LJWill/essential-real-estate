@@ -1,14 +1,3 @@
-
-jQuery(document).ready(function($) {
-    $('#filter-city').multiselect({
-        buttonWidth: '100%'
-    });
-
-    $('#filter-type').multiselect({
-        buttonWidth: '100%'
-    });
-});
-
 var ERE = ERE || {};
 (function ($) {
     'use strict';
