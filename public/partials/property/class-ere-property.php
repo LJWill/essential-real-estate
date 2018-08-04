@@ -322,6 +322,34 @@ if (!class_exists('ERE_Property')) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_internet', '0');
                 }
 
+                if (isset($_POST['houserule_nopets'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_nopets', sanitize_text_field($_POST['houserule_nopets']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_nopets', '0');
+                }
+
+                if (isset($_POST['houserule_nosmoking'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_nosmoking', sanitize_text_field($_POST['houserule_nosmoking']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_nosmoking', '0');
+                }
+
+                if (isset($_POST['houserule_femaleonly'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_femaleonly', sanitize_text_field($_POST['houserule_femaleonly']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_femaleonly', '0');
+                }
+
+                if (isset($_POST['houserule_maleonly'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_maleonly', sanitize_text_field($_POST['houserule_maleonly']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_maleonly', '0');
+                }
+
+                if (isset($_POST['houserule_desc'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'houserule_desc', $_POST['houserule_desc']);
+                }
+
                 if (isset($_POST['property_video_url'])) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_video_url', sanitize_text_field($_POST['property_video_url']));
                 }

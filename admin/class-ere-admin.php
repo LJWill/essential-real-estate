@@ -2796,6 +2796,7 @@ if (!class_exists('ERE_Admin')) {
                                         'about_your_property' => esc_html__('About Your Property', 'essential-real-estate'),
                                         'about_lease' => esc_html__('About Lease', 'essential-real-estate'),
                                         'rental_fare' => esc_html__('Rental Fare', 'essential-real-estate'),
+                                        'house_rules' => esc_html__('House Rules', 'essential-real-estate'),
                                         'title_des' => esc_html__('Title & Description', 'essential-real-estate'),
                                         'location' => esc_html__('Property Location', 'essential-real-estate'),
                                         'type' => esc_html__('Property Type', 'essential-real-estate'),
