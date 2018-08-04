@@ -58,7 +58,7 @@ wp_print_styles(ERE_PLUGIN_PREFIX . 'submit-property');
 ?>
 <section class="ere-property-multi-step">
     <?php
-    $layout = ere_get_option('property_form_sections', array('about_your_property', 'about_lease', 'title_des', 'location', 'type', 'price', 'features', 'details', 'media', 'floors', 'contact'));
+    $layout = ere_get_option('property_form_sections', array('about_your_property', 'about_lease', 'rental_fare', 'title_des', 'location', 'type', 'price', 'features', 'details', 'media', 'floors', 'contact'));
     // if (!in_array("private_note", $hide_property_fields)){
     //     $layout['private_note']='private_note';
     // }
@@ -77,6 +77,9 @@ wp_print_styles(ERE_PLUGIN_PREFIX . 'submit-property');
                     break;
                 case 'about_lease':
                     $step_name=esc_html__('About Lease', 'essential-real-estate');
+                    break;
+                case 'rental_fare':
+                    $step_name=esc_html__('Rental Fare', 'essential-real-estate');
                     break;
                 case 'title_des':
                     $step_name=esc_html__('Title & Description', 'essential-real-estate');

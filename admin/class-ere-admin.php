@@ -360,6 +360,37 @@ if (!class_exists('ERE_Admin')) {
                                             ),
                                             'default' => '0',
                                         ),
+                                        array(
+                                            'id' => "{$meta_prefix}property_leasing_std",
+                                            'title' => esc_html__('Standard bedroom', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}property_leasing_master",
+                                            'title' => esc_html__('Master room with ensuite', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}property_leasing_entire",
+                                            'title' => esc_html__('Entire house/apartment', 'essential-real-estate'),
+                                            'type' => 'text',
+                                            'pattern' => "{$format_number}",
+                                            'default' => '',
+                                        ),
+                                        array(
+                                            'id' => "{$meta_prefix}property_leasing_master_couple",
+                                            'title' => esc_html__('Is couple?', 'essential-real-estate'),
+                                            'type' => 'button_set',
+                                            'options' => array(
+                                                '1' => esc_html__('Yes', 'essential-real-estate'),
+                                                '0' => esc_html__('No', 'essential-real-estate'),
+                                            ),
+                                            'default' => '0',
+                                        ),
                                     )
                                 ),
                                 array(
@@ -2764,6 +2795,7 @@ if (!class_exists('ERE_Admin')) {
                                     'options' => array(
                                         'about_your_property' => esc_html__('About Your Property', 'essential-real-estate'),
                                         'about_lease' => esc_html__('About Lease', 'essential-real-estate'),
+                                        'rental_fare' => esc_html__('Rental Fare', 'essential-real-estate'),
                                         'title_des' => esc_html__('Title & Description', 'essential-real-estate'),
                                         'location' => esc_html__('Property Location', 'essential-real-estate'),
                                         'type' => esc_html__('Property Type', 'essential-real-estate'),

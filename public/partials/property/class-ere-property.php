@@ -258,6 +258,10 @@ if (!class_exists('ERE_Property')) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_price_short', sanitize_text_field($_POST['property_price_short']));
                 }
 
+                if (isset($_POST['property_price_period'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_price_period', sanitize_text_field($_POST['property_price_period']));
+                }
+
                 if (isset($_POST['property_bedrooms'])) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_bedrooms', sanitize_text_field($_POST['property_bedrooms']));
                 }
@@ -284,6 +288,38 @@ if (!class_exists('ERE_Property')) {
 
                 if (isset($_POST['property_tenants'])) {
                     update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_tenants', sanitize_text_field($_POST['property_tenants']));
+                }
+
+                if (isset($_POST['property_type_other'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_type_other', sanitize_text_field($_POST['property_type_other']));
+                }
+
+                if (isset($_POST['property_leaseterm_other'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'property_leaseterm_other', sanitize_text_field($_POST['property_leaseterm_other']));
+                }
+
+                if (isset($_POST['bill_water'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_water', sanitize_text_field($_POST['bill_water']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_water', '0');
+                }
+
+                if (isset($_POST['bill_electricity'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_electricity', sanitize_text_field($_POST['bill_electricity']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_electricity', '0');
+                }
+
+                if (isset($_POST['bill_gas'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_gas', sanitize_text_field($_POST['bill_gas']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_gas', '0');
+                }
+
+                if (isset($_POST['bill_internet'])) {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_internet', sanitize_text_field($_POST['bill_internet']));
+                } else {
+                    update_post_meta($property_id, ERE_METABOX_PREFIX . 'bill_internet', '0');
                 }
 
                 if (isset($_POST['property_video_url'])) {

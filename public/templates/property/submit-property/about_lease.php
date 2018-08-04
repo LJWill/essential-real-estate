@@ -86,4 +86,13 @@ $measurement_units_land_area = ere_get_measurement_units_land_area();
         echo '</label></div>';
     };
     ?>
+    <div class="property-fields property-detail row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label
+                    for="property_leaseterm_other"><?php echo esc_html__('If you choose other, please specify', 'essential-real-estate') . ere_required_field('property_leaseterm_other'); ?></label>
+                <input type="text" id="property_leaseterm_other" class="form-control" name="property_leaseterm_other" value="">
+            </div>
+        </div>
+    </div>
 </div>
