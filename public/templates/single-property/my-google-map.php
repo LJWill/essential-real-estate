@@ -1,66 +1,21 @@
-<style>
-    /* Always set the map height explicitly to define the size of the div
-        * element that contains the map. */
-    #map {
-        height: 100%;
-    }
-</style>
-<script>
-    // This example requires the Places library. Include the libraries=places
-    // parameter when you first load the API. For example:
-    var map;
-    var infowindow;
-    var service;
+<?php
+/**
+ * @var $property_id
+ */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+$title = get_the_title($property_id);
+$location = get_post_meta($property_id, ERE_METABOX_PREFIX . 'property_location', true);
+$lat = $lng = '';
+// if (!empty($location)) {
+// 	list($lat, $lng) = explode(',', $location['location']);
+// } else {
+// 	return;
+// }
 
-    function initMap() {
-        var pyrmont = {lat: -37.8149, lng: 144.9617};
+?>     
+            
 
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: pyrmont,
-            zoom: 15
-        });
-
-        infowindow = new google.maps.InfoWindow();
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-            location: pyrmont,
-            radius: 50000,
-            keyword: 'Nike',
-        }, callback);
-
-    }
-
-    function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                createMarker(results[i]);
-
-            }
-        }
-    }
-
-    function createMarker(place) {
-
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-            map: map,
-            position: place.geometry.location,
-        });
-
-        var request = { reference: place.reference };
-        service.getDetails(request, function(details, status) {
-            google.maps.event.addListener(marker, 'click', function() {
-                console.log(details);
-                var content = '<div><strong>' + place.name + '</strong><br>' +
-                    details.formatted_address + "<br />" +
-                    details.website + "<br />" +
-                    details.formatted_phone_number + '</div>';
-
-                infowindow.setContent(content);
-                infowindow.open(map, this);
-            });
-        });
-    }
-    </script>
-<div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALJ48kPpE41UcfsJFVtPBF4umjrvW0zeQ&libraries=places&callback=initMap" async defer></script>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.3299491685375!2d144.9606009!3d-37.8057399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642cce1316e83%3A0x331340e7ec98bf9f!2s555+Swanston+St%2C+Carlton+VIC+3053!5e0!3m2!1szh-CN!2sau!4v1530166214539" 
+    width="1200" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>

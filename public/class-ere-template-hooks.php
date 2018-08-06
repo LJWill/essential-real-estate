@@ -63,15 +63,17 @@ if (!class_exists('ERE_Template_Hooks')) {
             //Single Property
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_header', 5);
             $this->loader->add_action('ere_single_property_summary', $this, 'single_property_gallery', 10);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_description', 15);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_location', 20);
-            // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_features', 25);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_googlemap', 30);
+            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_googlemap', 15);
+            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_description', 20);
+            // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_location', 25);
+            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_features', 25);
+            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_house', 25);
+            
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_floors', 30);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_attachments', 35);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_map_directions', 40);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_nearby_places', 45);
-            $this->loader->add_action('ere_single_property_summary', $this, 'single_property_test', 50);
+            // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_test', 50);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_walk_score', 50);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_contact_agent', 55);
             // $this->loader->add_action('ere_single_property_summary', $this, 'single_property_footer', 90);
